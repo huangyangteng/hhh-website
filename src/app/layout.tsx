@@ -1,8 +1,8 @@
 import './globals.css'
 import RecoilRootWrapper from './RecoilRootWrapper.js'
 export const metadata = {
-    title: 'Learning English',
-    description: 'Learning English with videos'
+    title: 'hhh-website',
+    description: 'hhh website'
 }
 
 export default function RootLayout({

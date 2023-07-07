@@ -1,0 +1,37 @@
+{
+    "eslint.autoFixOnSave": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "html",
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "typescript",
+            "autoFix": true
+        },
+        {
+            "language": "typescriptreact",
+            "autoFix": true
+        }
+    ],
+    "vetur.format.defaultFormatter.scss": "prettier",
+    "vetur.format.defaultFormatter.css": "prettier",
+    "vetur.format.defaultFormatter.js": "prettier-eslint",
+    "vetur.format.defaultFormatter.html": "prettier",
+    "stylelint.autoFix": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "cSpell.words": [
+        "vant"
+    ],
+    "editor.detectIndentation": false,
+    "prettier.semi": false,
+    "files.associations": {
+        "*.css": "tailwindcss"
+    }
+}
