@@ -23,19 +23,24 @@
 .videoWrapper {
     display: flex;
     position: relative;
-
+    flex-direction: column;
+    padding-top: 80px;
+    max-width: 1440px;
     > video {
         margin-right: 20px;
-        max-width: 1280px;
+        max-width: 1440px;
+        margin-bottom: 200px;
     }
 }
 
 @media (max-width: 960px) {
     .videoWrapper {
+        padding-top: 20px;
         flex-direction: column;
         > video {
             margin-right: 0;
             width: 100%;
+            margin-bottom: 20px;
         }
     }
 }

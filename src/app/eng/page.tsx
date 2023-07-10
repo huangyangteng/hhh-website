@@ -266,7 +266,7 @@ export default function Home() {
                 </section>
             ) : (
                 <section className={styles.dragBox}>
-                    <h1 onClick={clickUpload}>drop here</h1>
+                    <h1 className={'text-4xl'} onClick={clickUpload}>drop here</h1>
                     <input
                         style={{ display: 'none' }}
                         ref={fileInputRef}
