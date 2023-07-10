@@ -6,5 +6,6 @@ export default function Test(){
     }        
     return <>
         <input type="file" onChange={onChange} />
-    </>
+        <button>hello</button>
+        </>
 }
