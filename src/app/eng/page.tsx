@@ -42,7 +42,7 @@ export default function Home() {
             clearInterval(countdownRef.current)
         }
     }, [countdown])
-
+    // 播放速度
     const [speed, setSpeed] = useState(1)
     useEffect(() => {
         if (videoDom.current) {
@@ -69,9 +69,30 @@ export default function Home() {
             }
         }
     }
-
+    // 绑定快捷键
     useEffect(() => {
         const onKeyup = (e: KeyboardEvent) => {
+            if(e.ctrlKey&& e.key==='a'){
+                e.preventDefault()
+                setShowOverlay(!showOverlay)
+            }
+            if(e.ctrlKey &&e.shiftKey&& e.key==='ArrowUp'){
+                e.preventDefault()
+                let nextIndex = curVideoIndex - 1
+                if (nextIndex < 0) {
+                    nextIndex=segments.length-1
+                } 
+                playVideo(nextIndex)
+            }
+            if(e.ctrlKey &&e.shiftKey&& e.key==='ArrowDown'){
+                e.preventDefault()
+                let nextIndex = curVideoIndex + 1
+                if (nextIndex >= segments.length) {
+                    nextIndex=0
+                }
+                playVideo(nextIndex)
+                
+            }
             if (e.key === 'ArrowLeft') seekVideo(true)
             if (e.key === 'ArrowRight') seekVideo(false)
             //监听空格键，控制视频播放暂停
@@ -87,7 +108,7 @@ export default function Home() {
 
         window.addEventListener('keyup', onKeyup)
         return () => window.removeEventListener('keyup', onKeyup)
-    }, [curVideoIndex, segments, step])
+    }, [curVideoIndex, segments, step,showOverlay])
 
     const onDrop = (e: DragEvent) => {
         e.preventDefault()
@@ -147,7 +168,7 @@ export default function Home() {
             ...historyList.filter((item) => item.name !== videoName),
             { name: videoName, time: new Date().toLocaleString(), currentTime }
         ])
-        if (videoDom.current!.currentTime > curVideo.end) {
+        if (videoDom.current!.currentTime >= curVideo.end) {
             if (playMode === PlayMode.Normal) {
                 videoDom.current!.pause()
             } else if (playMode === PlayMode.LoopOne) {
