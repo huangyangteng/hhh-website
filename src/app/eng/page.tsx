@@ -17,7 +17,9 @@ export default function Home() {
     const [currentTime, setCurrentTime] = useState(0)
     const fileInputRef = useRef<HTMLInputElement>(null)
 
+    const [showVideoList, setShowVideoList] = useState(true)
     // config
+    const [showConfig, setShowConfig] = useState(true)
     const [controls, setControls] = useState(true)
 
     const [showOverlay, setShowOverlay] = useState(false)
@@ -57,6 +59,15 @@ export default function Home() {
         if (!curVideo) return 0
         return (currentTime - curVideo.start) / (curVideo.end - curVideo.start)
     }, [currentTime, curVideo])
+
+    const progressOnChange=(percent:number)=>{
+        if(!curVideo) return
+        const time = curVideo.start + (curVideo.end - curVideo.start) * percent
+        setCurrentTime(time)
+        videoDom.current!.currentTime = time
+
+
+    }
 
     const seekVideo = (isLeft = true) => {
         if (isLeft) {
@@ -218,7 +229,8 @@ export default function Home() {
                     </div> 
                     <div>
                         <div className={'flex items-center p-4 flex-wrap flex-col lg:flex-row '}>
-                            <h2 className={'text-2xl mr-4'}>config:</h2>
+                            <h2 style={{opacity:showConfig?1:0.1}}  onDoubleClick={()=>{setShowConfig(!showConfig)}} className={'text-2xl mr-4'}>config:</h2>
+                            {showConfig&&<>
                             <div className={styles.configItem}>
                                 <label htmlFor="controls">controls</label>
                                 <input
@@ -290,9 +302,14 @@ export default function Home() {
                                 <button onClick={startCountDown}>start</button>
                                 <button onClick={resetCountDown}>reset</button>
                             </div>
+                            </>}
                         </div>
-                        <div className={'fixed w-40 right-10 top-10'}>
-                        <h2>{videoName}</h2>
+                        <div  className={'fixed w-40 right-10 top-10'}>
+                        <h2 style={{
+                            opacity:showVideoList?1:0.1,
+                        }} onDoubleClick={()=>setShowVideoList(!showVideoList)}>{videoName}</h2>
+                        {showVideoList&&<>
+                           
                         <div>
                             <span onClick={() => playVideo(curVideoIndex)}>
                                 part{curVideoIndex + 1}
@@ -301,6 +318,8 @@ export default function Home() {
                             <input
                                 type="range"
                                 value={progress}
+                                step="0.01"
+                                onInput={(e) =>progressOnChange(e.target.value)}
                                 max="1"></input>
                         </div>
                         <div>lastRead:</div>
@@ -308,8 +327,8 @@ export default function Home() {
                             active={curVideoIndex}
                             segments={segments}
                             handleClick={playVideo}
-                        />
-                        </div>
+                        /></>}
+                        </div> 
                      
                     </div>
                     {/* overlay */}
