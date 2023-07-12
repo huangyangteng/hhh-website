@@ -19,29 +19,36 @@ export default function Home() {
 
     // config
     const [controls, setControls] = useState(true)
+
     const [showOverlay, setShowOverlay] = useState(false)
     const [step, setStep] = useState(1)
     const [playMode, setPlayMode] = useState<PlayMode>(PlayMode.LoopOne)
-    const [countdown, setCountdown] = useState(30*60)
+    const [countdown, setCountdown] = useState(30 * 60)
     const [historyList, setHistoryList] = useRecoilState(historyListState)
-    const countdownRef=useRef<any>(0)
-    const startCountDown=()=>{
+    const countdownRef = useRef<any>(0)
+    const startCountDown = () => {
         clearInterval(countdownRef.current)
-        countdownRef.current=setInterval(()=>{
-            setCountdown(countdown=>countdown-1)
-        },1000)
+        countdownRef.current = setInterval(() => {
+            setCountdown((countdown) => countdown - 1)
+        }, 1000)
     }
-    const resetCountDown=()=>{
+    const resetCountDown = () => {
         clearInterval(countdownRef.current)
-        setCountdown(30*60)
+        setCountdown(30 * 60)
     }
-    useEffect(()=>{
-        if(countdown<=0){
+    useEffect(() => {
+        if (countdown <= 0) {
             videoDom.current?.pause()
             clearInterval(countdownRef.current)
         }
-    },[countdown])
-    
+    }, [countdown])
+
+    const [speed, setSpeed] = useState(1)
+    useEffect(() => {
+        if (videoDom.current) {
+            videoDom.current.playbackRate = speed
+        }
+    }, [speed])
 
     const curVideo = useMemo(() => {
         return segments[curVideoIndex]
@@ -161,15 +168,14 @@ export default function Home() {
             fileInputRef.current.click()
         }
     }
-    const clickVideo=(e:any)=>{
-        if(controls)return
+    const clickVideo = (e: any) => {
+        if (controls) return
         //点击左半区域，快退，点击右半区域，快进
-        if(e.clientX<e.target.clientWidth/2){
+        if (e.clientX < e.target.clientWidth / 2) {
             seekVideo(true)
-        }else{
+        } else {
             seekVideo(false)
         }
-
     }
     return (
         <main
@@ -178,18 +184,20 @@ export default function Home() {
             onDragOver={(e) => e.preventDefault()}>
             {videoSrc ? (
                 <section className={styles.videoWrapper}>
-                    <video
-                        ref={videoDom}
-                        src={videoSrc}
-                        playsInline
-                        onLoadedMetadata={onLoad}
-                        onClick={clickVideo}
-                        onTouchStart={clickVideo}
-                        controls={controls}
-                        onTimeUpdate={onTimeUpdate}></video>
+                    <div className={'flex-1 mr-4'}>
+                        <video
+                            ref={videoDom}
+                            src={videoSrc}
+                            playsInline
+                            onLoadedMetadata={onLoad}
+                            onClick={clickVideo}
+                            onTouchStart={clickVideo}
+                            controls={controls}
+                            onTimeUpdate={onTimeUpdate}></video>
+                    </div> 
                     <div>
-                        <div style={{padding:'10px'}}>
-                            <h2>config</h2>
+                        <div className={'flex items-center p-4 flex-wrap flex-col lg:flex-row '}>
+                            <h2 className={'text-2xl mr-4'}>config:</h2>
                             <div className={styles.configItem}>
                                 <label htmlFor="controls">controls</label>
                                 <input
@@ -224,6 +232,17 @@ export default function Home() {
                                 />
                             </div>
                             <div className={styles.configItem}>
+                                speed
+                                <input
+                                    type="number"
+                                    step={0.1}
+                                    value={step}
+                                    onChange={(e) =>
+                                        setSpeed(Number(e.target.value))
+                                    }
+                                />
+                            </div>
+                            <div className={styles.configItem}>
                                 play mode
                                 <select
                                     value={playMode}
@@ -242,31 +261,44 @@ export default function Home() {
                                 </select>
                             </div>
                             <div className={styles.configItem}>
-                                <input value={countdown} onChange={e=>setCountdown(Number(e.target.value))}></input>
+                                <input
+                                    value={countdown}
+                                    onChange={(e) =>
+                                        setCountdown(Number(e.target.value))
+                                    }></input>
                                 <button onClick={startCountDown}>start</button>
                                 <button onClick={resetCountDown}>reset</button>
                             </div>
                         </div>
+                        <div className={'fixed w-40 right-10 top-10'}>
                         <h2>{videoName}</h2>
                         <div>
-                        <span onClick={()=>playVideo(curVideoIndex)}>part{curVideoIndex+1}</span>: {Math.floor(progress * 100)}%
-                        <input type="range" value={progress} max="1"></input>
+                            <span onClick={() => playVideo(curVideoIndex)}>
+                                part{curVideoIndex + 1}
+                            </span>
+                            : {Math.floor(progress * 100)}%
+                            <input
+                                type="range"
+                                value={progress}
+                                max="1"></input>
                         </div>
-                        <div>
-                            lastRead:
-                        </div>
+                        <div>lastRead:</div>
                         <VideoList
                             active={curVideoIndex}
                             segments={segments}
                             handleClick={playVideo}
                         />
+                        </div>
+                     
                     </div>
                     {/* overlay */}
-                    {showOverlay&&<VideoOverlay/>}
+                    {showOverlay && <VideoOverlay />}
                 </section>
             ) : (
                 <section className={styles.dragBox}>
-                    <h1 className={'text-4xl'} onClick={clickUpload}>drop here</h1>
+                    <h1 className={'text-4xl'} onClick={clickUpload}>
+                        drop here
+                    </h1>
                     <input
                         style={{ display: 'none' }}
                         ref={fileInputRef}
