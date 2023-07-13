@@ -269,7 +269,7 @@ export default function Home() {
                                 <input
                                     type="number"
                                     step={0.1}
-                                    value={step}
+                                    value={speed}
                                     onChange={(e) =>
                                         setSpeed(Number(e.target.value))
                                     }
@@ -319,7 +319,7 @@ export default function Home() {
                                 type="range"
                                 value={progress}
                                 step="0.01"
-                                onInput={(e) =>progressOnChange(e.target.value)}
+                                onInput={(e:any) =>progressOnChange(e.target.value)}
                                 max="1"></input>
                         </div>
                         <div>lastRead:</div>
