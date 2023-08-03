@@ -21,6 +21,7 @@ export default function Home() {
     // config
     const [showConfig, setShowConfig] = useState(true)
     const [controls, setControls] = useState(true)
+    const [fullScreen, setFullScreen] = useState(false)
 
     const [showOverlay, setShowOverlay] = useState(false)
     const [step, setStep] = useState(1)
@@ -209,6 +210,28 @@ export default function Home() {
             seekVideo(false)
         }
     }
+    const onContextMenu = (e: any) => {
+        e.preventDefault()
+        seekVideo(true)
+    }
+    const clickPlayVideo=()=>{
+        videoDom.current!.play()
+    }
+    const clickPauseVideo=()=>{
+        videoDom.current!.pause()
+    }
+    const handleFullScreen=(flag:boolean)=>{
+        setFullScreen(flag)
+        // 全屏切换函数
+        // function toggleFullScreen(videoElement:any) {
+        //     if(!document.fullscreenElement){
+        //         videoElement.requestFullscreen();
+        //     }else{
+        //         document.exitFullscreen();
+        //     }
+        // }
+        // toggleFullScreen(videoDom.current)
+    }
     return (
         <main
             className={styles.main}
@@ -220,17 +243,36 @@ export default function Home() {
                         <video
                             ref={videoDom}
                             src={videoSrc}
+                            className={fullScreen?styles.fullVideo:''}
                             playsInline
                             onLoadedMetadata={onLoad}
                             onClick={clickVideo}
+                            onContextMenu={onContextMenu}
                             onTouchStart={clickVideo}
                             controls={controls}
                             onTimeUpdate={onTimeUpdate}></video>
                     </div> 
-                    <div>
+                    <div className={fullScreen?styles.bottomSettings:''}>
                         <div className={'flex items-center p-4 flex-wrap flex-col lg:flex-row '}>
                             <h2 style={{opacity:showConfig?1:0.1}}  onDoubleClick={()=>{setShowConfig(!showConfig)}} className={'text-2xl mr-4'}>config:</h2>
                             {showConfig&&<>
+                                <div className={styles.configItem}>
+                               <button className={'mr-2'} onClick={clickPlayVideo}>播放</button>
+                               <button  className={'mr-2'} onClick={clickPauseVideo}>暂停</button>
+                               <button className={'mr-2'} onClick={()=>{seekVideo(true)}}>快退</button>
+                               <button className={'mr-2'} onClick={()=>{seekVideo(false)}}>快进</button>
+                            </div>
+                            <div className={styles.configItem}>
+                                <label htmlFor="controls">fullscreen</label>
+                                <input
+                                    id="fullscreen"
+                                    type="checkbox"
+                                    checked={fullScreen}
+                                    onChange={(e) =>
+                                       handleFullScreen(e.target.checked)
+                                    }
+                                />
+                            </div>
                             <div className={styles.configItem}>
                                 <label htmlFor="controls">controls</label>
                                 <input
