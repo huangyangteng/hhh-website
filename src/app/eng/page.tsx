@@ -2,12 +2,21 @@
 import { DragEvent, useEffect, useMemo, useRef, useState } from 'react'
 import styles from './page.module.scss'
 import { Segment, PlayMode } from '@/types'
-import VideoList from './components/VideoList'
 import { useRecoilState } from 'recoil'
 import { historyListState } from '@/store/history'
 import VideoOverlay from './components/VideoOverlay'
 import { count } from 'console'
 import DropBox from './components/DropBox'
+import VideoAside from './components/VideoAside'
+import VideoConfig from './components/VideoConfig'
+import {
+    fullScreenAtom,
+    showOverLayAtom,
+    controlsAtom,
+    stepAtom,
+    speedAtom,
+    playModeAtom
+} from './state/config'
 export default function Home() {
     const videoDom = useRef<HTMLVideoElement>(null)
 
@@ -18,57 +27,22 @@ export default function Home() {
     const [currentTime, setCurrentTime] = useState(0)
     const fileInputRef = useRef<HTMLInputElement>(null)
 
-    const [showVideoList, setShowVideoList] = useState(true)
-    // config
-    const [showConfig, setShowConfig] = useState(true)
-    const [controls, setControls] = useState(true)
-    const [fullScreen, setFullScreen] = useState(false)
-
-    const [showOverlay, setShowOverlay] = useState(false)
-    const [step, setStep] = useState(1)
-    const [playMode, setPlayMode] = useState<PlayMode>(PlayMode.LoopOne)
-    const [countdown, setCountdown] = useState(30 * 60)
     const [historyList, setHistoryList] = useRecoilState(historyListState)
-    const countdownRef = useRef<any>(0)
-    const startCountDown = () => {
-        clearInterval(countdownRef.current)
-        countdownRef.current = setInterval(() => {
-            setCountdown((countdown) => countdown - 1)
-        }, 1000)
-    }
-    const resetCountDown = () => {
-        clearInterval(countdownRef.current)
-        setCountdown(30 * 60)
-    }
-    useEffect(() => {
-        if (countdown <= 0) {
-            videoDom.current?.pause()
-            clearInterval(countdownRef.current)
-        }
-    }, [countdown])
-    // 播放速度
-    const [speed, setSpeed] = useState(1)
-    useEffect(() => {
-        if (videoDom.current) {
-            videoDom.current.playbackRate = speed
-        }
-    }, [speed])
 
     const curVideo = useMemo(() => {
         return segments[curVideoIndex]
     }, [curVideoIndex, segments])
+
     const progress = useMemo(() => {
         if (!curVideo) return 0
         return (currentTime - curVideo.start) / (curVideo.end - curVideo.start)
     }, [currentTime, curVideo])
 
-    const progressOnChange=(percent:number)=>{
-        if(!curVideo) return
+    const progressOnChange = (percent: number) => {
+        if (!curVideo) return
         const time = curVideo.start + (curVideo.end - curVideo.start) * percent
         setCurrentTime(time)
         videoDom.current!.currentTime = time
-
-
     }
 
     const seekVideo = (isLeft = true) => {
@@ -82,46 +56,7 @@ export default function Home() {
             }
         }
     }
-    // 绑定快捷键
-    useEffect(() => {
-        const onKeyup = (e: KeyboardEvent) => {
-            if(e.ctrlKey&& e.key==='a'){
-                e.preventDefault()
-                setShowOverlay(!showOverlay)
-            }
-            if(e.ctrlKey &&e.shiftKey&& e.key==='ArrowUp'){
-                e.preventDefault()
-                let nextIndex = curVideoIndex - 1
-                if (nextIndex < 0) {
-                    nextIndex=segments.length-1
-                } 
-                playVideo(nextIndex)
-            }
-            if(e.ctrlKey &&e.shiftKey&& e.key==='ArrowDown'){
-                e.preventDefault()
-                let nextIndex = curVideoIndex + 1
-                if (nextIndex >= segments.length) {
-                    nextIndex=0
-                }
-                playVideo(nextIndex)
-                
-            }
-            if (e.key === 'ArrowLeft') seekVideo(true)
-            if (e.key === 'ArrowRight') seekVideo(false)
-            //监听空格键，控制视频播放暂停
-            if (e.key === ' ') {
-                console.log('click space')
-                if (videoDom.current!.paused) {
-                    videoDom.current!.play()
-                } else {
-                    videoDom.current!.pause()
-                }
-            }
-        }
-
-        window.addEventListener('keyup', onKeyup)
-        return () => window.removeEventListener('keyup', onKeyup)
-    }, [curVideoIndex, segments, step,showOverlay])
+    
 
     const onDrop = (e: DragEvent) => {
         e.preventDefault()
@@ -215,19 +150,65 @@ export default function Home() {
         e.preventDefault()
         seekVideo(true)
     }
-    const clickPlayVideo=()=>{
-        videoDom.current!.play()
-    }
-    const clickPauseVideo=()=>{
-        videoDom.current!.pause()
-    }
-    const handleFullScreen=(flag:boolean)=>{
-        setFullScreen(flag)
-    }
-    const onUploadSuccess=(file:File)=>{
-         setVideoSrc(URL.createObjectURL(file))
+
+    const onUploadSuccess = (file: File) => {
+        setVideoSrc(URL.createObjectURL(file))
         setVideoName(file.name)
     }
+
+    const [fullScreen] = useRecoilState(fullScreenAtom)
+    const [showOverlay,setShowOverlay] = useRecoilState(showOverLayAtom)
+    const [controls] = useRecoilState(controlsAtom)
+    const [playMode] = useRecoilState(playModeAtom)
+    const [step] = useRecoilState(stepAtom)
+    const [speed] = useRecoilState(speedAtom)
+    useEffect(() => {
+        if (videoDom.current) {
+            videoDom.current.playbackRate = speed
+        }
+    }, [speed])
+
+    // 绑定快捷键
+    useEffect(() => {
+        const onKeyup = (e: KeyboardEvent) => {
+            if(e.ctrlKey&& e.key==='a'){
+                e.preventDefault()
+                setShowOverlay(!showOverlay)
+            }
+            if(e.ctrlKey &&e.shiftKey&& e.key==='ArrowUp'){
+                e.preventDefault()
+                let nextIndex = curVideoIndex - 1
+                if (nextIndex < 0) {
+                    nextIndex=segments.length-1
+                }
+                playVideo(nextIndex)
+            }
+            if(e.ctrlKey &&e.shiftKey&& e.key==='ArrowDown'){
+                e.preventDefault()
+                let nextIndex = curVideoIndex + 1
+                if (nextIndex >= segments.length) {
+                    nextIndex=0
+                }
+                playVideo(nextIndex)
+
+            }
+            if (e.key === 'ArrowLeft') seekVideo(true)
+            if (e.key === 'ArrowRight') seekVideo(false)
+            //监听空格键，控制视频播放暂停
+            if (e.key === ' ') {
+                console.log('click space')
+                if (videoDom.current!.paused) {
+                    videoDom.current!.play()
+                } else {
+                    videoDom.current!.pause()
+                }
+            }
+        }
+
+        window.addEventListener('keyup', onKeyup)
+        return () => window.removeEventListener('keyup', onKeyup)
+    }, [curVideoIndex, segments, step,showOverlay])
+
     return (
         <main
             className={styles.main}
@@ -239,7 +220,7 @@ export default function Home() {
                         <video
                             ref={videoDom}
                             src={videoSrc}
-                            className={fullScreen?styles.fullVideo:''}
+                            className={fullScreen ? styles.fullVideo : ''}
                             playsInline
                             onLoadedMetadata={onLoad}
                             onClick={clickVideo}
@@ -247,128 +228,15 @@ export default function Home() {
                             onTouchStart={clickVideo}
                             controls={controls}
                             onTimeUpdate={onTimeUpdate}></video>
-                    </div> 
-                    <div className={fullScreen?styles.bottomSettings:''}>
-                        <div className={'flex items-center p-4 flex-wrap flex-col lg:flex-row '}>
-                            <h2 style={{opacity:showConfig?1:0.1}}  onDoubleClick={()=>{setShowConfig(!showConfig)}} className={'text-2xl mr-4'}>config:</h2>
-                            {showConfig&&<>
-                                <div className={styles.configItem}>
-                               <button className={'mr-2'} onClick={clickPlayVideo}>播放</button>
-                               <button  className={'mr-2'} onClick={clickPauseVideo}>暂停</button>
-                               <button className={'mr-2'} onClick={()=>{seekVideo(true)}}>快退</button>
-                               <button className={'mr-2'} onClick={()=>{seekVideo(false)}}>快进</button>
-                            </div>
-                            <div className={styles.configItem}>
-                                <label htmlFor="controls">fullscreen</label>
-                                <input
-                                    id="fullscreen"
-                                    type="checkbox"
-                                    checked={fullScreen}
-                                    onChange={(e) =>
-                                       handleFullScreen(e.target.checked)
-                                    }
-                                />
-                            </div>
-                            <div className={styles.configItem}>
-                                <label htmlFor="controls">controls</label>
-                                <input
-                                    id="controls"
-                                    type="checkbox"
-                                    checked={controls}
-                                    onChange={(e) =>
-                                        setControls(e.target.checked)
-                                    }
-                                />
-                            </div>
-                            <div className={styles.configItem}>
-                                <label htmlFor="overlay">overlay</label>
-                                <input
-                                    id="overlay"
-                                    type="checkbox"
-                                    checked={showOverlay}
-                                    onChange={(e) =>
-                                        setShowOverlay(e.target.checked)
-                                    }
-                                />
-                            </div>
-                            <div className={styles.configItem}>
-                                step
-                                <input
-                                    type="number"
-                                    step={0.1}
-                                    value={step}
-                                    onChange={(e) =>
-                                        setStep(Number(e.target.value))
-                                    }
-                                />
-                            </div>
-                            <div className={styles.configItem}>
-                                speed
-                                <input
-                                    type="number"
-                                    step={0.1}
-                                    value={speed}
-                                    onChange={(e) =>
-                                        setSpeed(Number(e.target.value))
-                                    }
-                                />
-                            </div>
-                            <div className={styles.configItem}>
-                                play mode
-                                <select
-                                    value={playMode}
-                                    onChange={(e) =>
-                                        setPlayMode(Number(e.target.value))
-                                    }>
-                                    <option value={PlayMode.Normal}>
-                                        Normal
-                                    </option>
-                                    <option value={PlayMode.LoopOne}>
-                                        LoopOne
-                                    </option>
-                                    <option value={PlayMode.Sequence}>
-                                        Sequence
-                                    </option>
-                                </select>
-                            </div>
-                            <div className={styles.configItem}>
-                                <input
-                                    value={countdown}
-                                    onChange={(e) =>
-                                        setCountdown(Number(e.target.value))
-                                    }></input>
-                                <button onClick={startCountDown}>start</button>
-                                <button onClick={resetCountDown}>reset</button>
-                            </div>
-                            </>}
-                        </div>
-                        <div  className={'fixed w-40 right-10 top-10'}>
-                        <h2 style={{
-                            opacity:showVideoList?1:0.1,
-                        }} onDoubleClick={()=>setShowVideoList(!showVideoList)}>{videoName}</h2>
-                        {showVideoList&&<>
-                           
-                        <div>
-                            <span onClick={() => playVideo(curVideoIndex)}>
-                                part{curVideoIndex + 1}
-                            </span>
-                            : {Math.floor(progress * 100)}%
-                            <input
-                                type="range"
-                                value={progress}
-                                step="0.01"
-                                onInput={(e:any) =>progressOnChange(e.target.value)}
-                                max="1"></input>
-                        </div>
-                        <div>lastRead:</div>
-                        <VideoList
-                            active={curVideoIndex}
-                            segments={segments}
-                            handleClick={playVideo}
-                        /></>}
-                        </div> 
-                     
                     </div>
+                    <VideoAside
+                        videoName={videoName}
+                        curVideoIndex={curVideoIndex}
+                        segments={segments}
+                        progress={progress}
+                        progressOnChange={progressOnChange}
+                        playVideo={playVideo}></VideoAside>
+                    <VideoConfig videoDom={videoDom} curVideo={curVideo} />
                     {/* overlay */}
                     {showOverlay && <VideoOverlay />}
                 </section>
