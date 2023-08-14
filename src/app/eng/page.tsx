@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil'
 import { historyListState } from '@/store/history'
 import VideoOverlay from './components/VideoOverlay'
 import { count } from 'console'
+import DropBox from './components/DropBox'
 export default function Home() {
     const videoDom = useRef<HTMLVideoElement>(null)
 
@@ -222,15 +223,10 @@ export default function Home() {
     }
     const handleFullScreen=(flag:boolean)=>{
         setFullScreen(flag)
-        // 全屏切换函数
-        // function toggleFullScreen(videoElement:any) {
-        //     if(!document.fullscreenElement){
-        //         videoElement.requestFullscreen();
-        //     }else{
-        //         document.exitFullscreen();
-        //     }
-        // }
-        // toggleFullScreen(videoDom.current)
+    }
+    const onUploadSuccess=(file:File)=>{
+         setVideoSrc(URL.createObjectURL(file))
+        setVideoName(file.name)
     }
     return (
         <main
@@ -377,17 +373,7 @@ export default function Home() {
                     {showOverlay && <VideoOverlay />}
                 </section>
             ) : (
-                <section className={styles.dragBox}>
-                    <h1 className={'text-4xl'} onClick={clickUpload}>
-                        drop here
-                    </h1>
-                    <input
-                        style={{ display: 'none' }}
-                        ref={fileInputRef}
-                        onChange={onUpload}
-                        type="file"
-                    />
-                </section>
+                <DropBox uploadSuccess={onUploadSuccess}></DropBox>
             )}
         </main>
     )
