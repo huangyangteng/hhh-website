@@ -9,6 +9,7 @@ import { count } from 'console'
 import DropBox from './components/DropBox'
 import VideoAside from './components/VideoAside'
 import VideoConfig from './components/VideoConfig'
+import VideoPin from './components/VideoPin'
 import {
     fullScreenAtom,
     showOverLayAtom,
@@ -25,7 +26,6 @@ export default function Home() {
     const [segments, setSegments] = useState<Segment[]>([])
     const [curVideoIndex, setCurVideoIndex] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
-    const fileInputRef = useRef<HTMLInputElement>(null)
 
     const [historyList, setHistoryList] = useRecoilState(historyListState)
 
@@ -56,6 +56,11 @@ export default function Home() {
             }
         }
     }
+    const seedCurrentTime=(time:number)=>{
+        if (videoDom.current) {
+            videoDom.current.currentTime = time
+        }
+    }
     
 
     const onDrop = (e: DragEvent) => {
@@ -65,14 +70,7 @@ export default function Home() {
         setVideoSrc(URL.createObjectURL(videoFile))
         setVideoName(videoFile.name)
     }
-    const onUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log('on change file')
-        if (!e.target.files) return
-        const videoFile = e.target.files[0]
-        //通过file生成url
-        setVideoSrc(URL.createObjectURL(videoFile))
-        setVideoName(videoFile.name)
-    }
+   
     const onLoad = () => {
         const duration = videoDom.current!.duration
         const shortVideoLength = 60 * 30
@@ -132,11 +130,6 @@ export default function Home() {
         }
     }
 
-    const clickUpload = () => {
-        if (fileInputRef.current) {
-            fileInputRef.current.click()
-        }
-    }
     const clickVideo = (e: any) => {
         if (controls) return
         //点击左半区域，快退，点击右半区域，快进
@@ -229,6 +222,7 @@ export default function Home() {
                             controls={controls}
                             onTimeUpdate={onTimeUpdate}></video>
                     </div>
+                    <VideoPin videoDom={videoDom}   videoKey={videoName+'__'+curVideoIndex} goToPinTime={seedCurrentTime}></VideoPin>
                     <VideoAside
                         videoName={videoName}
                         curVideoIndex={curVideoIndex}

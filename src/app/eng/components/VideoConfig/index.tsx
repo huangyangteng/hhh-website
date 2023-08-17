@@ -66,7 +66,7 @@ export default function Config({ videoDom, curVideo }: any) {
                     'flex items-center p-4 flex-wrap flex-col lg:flex-row '
                 }>
                 <h2
-                    style={{ opacity: showConfig ? 1 : 0.1 }}
+                    style={{ opacity: showConfig ? 1 : 0.1,userSelect:'none' }}
                     onDoubleClick={() => {
                         setShowConfig(!showConfig)
                     }}

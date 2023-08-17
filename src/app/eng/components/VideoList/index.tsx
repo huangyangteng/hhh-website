@@ -1,13 +1,14 @@
 import { Segment } from "@/types"
 import styles from './styles.module.scss'
+import { formatTime } from '../../utils/index'
 //输入时间：300 输出：05:00
-function formatTime(time: number) {
-    let minutes = Math.floor(time / 60)
-    let seconds = Math.floor(time % 60)
-    return `${minutes.toString().padStart(2, '0')}:${seconds
-        .toString()
-        .padStart(2, '0')}`
-}
+// function formatTime(time: number) {
+//     let minutes = Math.floor(time / 60)
+//     let seconds = Math.floor(time % 60)
+//     return `${minutes.toString().padStart(2, '0')}:${seconds
+//         .toString()
+//         .padStart(2, '0')}`
+// }
 interface VideoListProps {
     segments: Segment[]
     handleClick: (index: number) => void

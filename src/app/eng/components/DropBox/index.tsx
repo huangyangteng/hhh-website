@@ -1,5 +1,6 @@
 import styles from './styles.module.scss'
 import {useRef} from 'react'
+
 export default function DropBox({uploadSuccess}: {uploadSuccess: (file: File) => void}){
     const fileInputRef = useRef<HTMLInputElement>(null)
     const clickUpload = () => {
