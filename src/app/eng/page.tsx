@@ -164,11 +164,11 @@ export default function Home() {
     // 绑定快捷键
     useEffect(() => {
         const onKeyup = (e: KeyboardEvent) => {
-            if(e.ctrlKey&& e.key==='a'){
+            if(e.key==='a'){
                 e.preventDefault()
                 setShowOverlay(!showOverlay)
             }
-            if(e.ctrlKey &&e.shiftKey&& e.key==='ArrowUp'){
+            if( e.key==='ArrowUp'){
                 e.preventDefault()
                 let nextIndex = curVideoIndex - 1
                 if (nextIndex < 0) {
@@ -176,7 +176,7 @@ export default function Home() {
                 }
                 playVideo(nextIndex)
             }
-            if(e.ctrlKey &&e.shiftKey&& e.key==='ArrowDown'){
+            if( e.key==='ArrowDown'){
                 e.preventDefault()
                 let nextIndex = curVideoIndex + 1
                 if (nextIndex >= segments.length) {
@@ -208,6 +208,7 @@ export default function Home() {
             onDrop={onDrop}
             onDragOver={(e) => e.preventDefault()}>
             {videoSrc ? (
+                <>  
                 <section className={styles.videoWrapper}>
                     <div className={'flex-1 mr-4'}>
                         <video
@@ -232,8 +233,10 @@ export default function Home() {
                         playVideo={playVideo}></VideoAside>
                     <VideoConfig videoDom={videoDom} curVideo={curVideo} />
                     {/* overlay */}
-                    {showOverlay && <VideoOverlay />}
+                  
                 </section>
+                {showOverlay && <VideoOverlay />}
+                </>
             ) : (
                 <DropBox uploadSuccess={onUploadSuccess}></DropBox>
             )}
