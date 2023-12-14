@@ -4,6 +4,7 @@ export const metadata = {
     title: 'hhh-website',
     description: 'hhh website'
 }
+import StyledComponentsRegistry from '../lib/AntdRegistry';
 
 export default function RootLayout({
     children
@@ -14,7 +15,9 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning={true}>
             <body suppressHydrationWarning={true}>
                 <RecoilRootWrapper>
-                {children}
+                    <StyledComponentsRegistry>
+                    {children}
+                    </StyledComponentsRegistry>
                 </RecoilRootWrapper>
             </body>
         </html>

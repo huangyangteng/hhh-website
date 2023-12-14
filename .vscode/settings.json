@@ -17,13 +17,8 @@
             "autoFix": true
         }
     ],
-    "vetur.format.defaultFormatter.scss": "prettier",
-    "vetur.format.defaultFormatter.css": "prettier",
-    "vetur.format.defaultFormatter.js": "prettier-eslint",
-    "vetur.format.defaultFormatter.html": "prettier",
-    "stylelint.autoFix": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
     },
     "editor.formatOnSave": true,
     "cSpell.words": [

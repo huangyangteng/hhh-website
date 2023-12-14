@@ -1,8 +1,7 @@
-const path = require('path');
- console.log('🐔🐔🐔',process.env.NEXT_PUBLIC_ASSET_PREFIX)
+const path = require('path')
 module.exports = {
-  assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX || '',
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
-};
+    assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX || '',
+    sassOptions: {
+        includePaths: [path.join(__dirname, 'styles')]
+    }
+}
