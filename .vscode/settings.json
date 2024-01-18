@@ -1,8 +1,12 @@
 {
     "eslint.autoFixOnSave": true,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "eslint.validate": [
         "javascript",
         "javascriptreact",
+        "typescriptreact",
         "html",
         {
             "language": "vue",
@@ -22,7 +26,9 @@
     },
     "editor.formatOnSave": true,
     "cSpell.words": [
-        "vant"
+        "vant",
+        "antd",
+        "Sider"
     ],
     "editor.detectIndentation": false,
     "prettier.semi": false,

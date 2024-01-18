@@ -1,4 +1,9 @@
-import { Button } from "antd"
-export default function Text(){
-    return <> <Button type="primary">Primary Button</Button></>
+import { Button } from 'antd'
+import CssText from './components/CssText'
+export default function Text() {
+    return (
+        <>
+            <CssText />
+        </>
+    )
 }
