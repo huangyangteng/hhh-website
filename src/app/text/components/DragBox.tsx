@@ -1,7 +1,11 @@
 import { useMemo } from 'react'
 import styles from './box.module.scss'
 
-export default function DragBox({ info = { content: '双击编辑文字' } }) {
+export default function DragBox({
+    info = { content: '双击编辑文字' }
+}: {
+    info: any
+}) {
     const style = useMemo(() => {
         const { x, y, w, h, fontSize } = info
         return {
