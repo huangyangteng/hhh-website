@@ -3,3 +3,6 @@ node_modules
 .next
 .vscode
 doc
+*.tar
+*.gz
+slim.report.json

@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
-    name: 'website',
-    script: 'npm',
+    name: 'hhh',
+    script: 'yarn',
     args: 'start',
     env: {
       NODE_ENV: 'production',
