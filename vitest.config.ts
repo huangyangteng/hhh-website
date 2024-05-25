@@ -1,11 +1,12 @@
 ///<reference types="vitest"/>
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
+const {defineConfig}=require('vitest/config')
+const react=require('@vitejs/plugin-react')
  
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    environment: 'jsdom',
-    globals:true  //支持全局导入
-  },
-})
+
+module.exports=defineConfig({
+    plugins: [react()],
+    test: {
+      environment: 'jsdom',
+      globals:true  //支持全局导入
+    },
+  })
