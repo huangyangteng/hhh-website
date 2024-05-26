@@ -24,3 +24,35 @@ export  function getVideoUrl(link){
         return null
     })
 }
+
+
+interface SoundMark{
+    text:string
+    fsound:string
+    sound:string
+}
+export interface WordInfo{
+    level:string
+    soundmark:Record<string, SoundMark>
+    meaning:string[]
+    meaningTotal:string[]
+    examples:string[]
+
+}
+export function getWordInfo(word){
+    return http.request<WordInfo,BaseResType<WordInfo>>({
+        url:'/util/translate',
+        params:{
+            word
+        }
+    }).then(res=>{
+        if(res.code===ResCode.Success){
+            return res.data
+        }else{
+            return null
+        }
+    }).catch(err=>{
+        console.log('🐔🐔🐔getWordInfo error',err)
+        return null
+    })
+}
