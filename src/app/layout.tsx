@@ -5,6 +5,7 @@ export const metadata = {
     description: 'hhh website'
 }
 import StyledComponentsRegistry from '../lib/AntdRegistry';
+import ReactQueryRegistry from '@/lib/ReactQueryRegistry';
 
 export default function RootLayout({
     children
@@ -16,7 +17,9 @@ export default function RootLayout({
             <body suppressHydrationWarning={true}>
                 <RecoilRootWrapper>
                     <StyledComponentsRegistry>
-                    {children}
+                        <ReactQueryRegistry>
+                        {children}
+                        </ReactQueryRegistry>
                     </StyledComponentsRegistry>
                 </RecoilRootWrapper>
             </body>

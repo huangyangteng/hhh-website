@@ -1,8 +1,9 @@
 :root {
     --bg-color-main: #0d0d0f;
     --bg-color-secondary: #16161b;
-    --font-color:#fff;
-   
+    --font-color:rgb(228, 226, 222);
+    --link-color:rgba(255, 255, 255, 0.7);
+
 }
 
 
@@ -10,6 +11,13 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+a{
+    color:var(--link-color);
+    text-decoration-color: var(--link-color);
+    &:hover{
+        opacity: 0.9;
+    }
 }
 
 html,
