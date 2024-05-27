@@ -107,4 +107,18 @@
         gap:0.5em;
         flex-wrap: wrap;
     }
+
+    .word-list{
+        height: 280px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap:0.5em;
+        .word-item{
+            font-size: 1.5em;
+            display: flex;
+            gap:1em;
+            letter-spacing: 2px;
+        }
+    }
 }

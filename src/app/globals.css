@@ -6,6 +6,25 @@
     --color-primary:rgb(22, 119, 255);
 
 }
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    box-shadow: rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #999;
+    box-shadow: rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5);
+}
+
 
 
 * {
