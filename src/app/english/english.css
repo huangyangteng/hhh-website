@@ -102,6 +102,62 @@
         }
     }
 
+
+    .phonetics-pdf-wrapper{
+        position: relative;
+        background: #fff;
+        height: 808px;
+        .page-controls {
+            position: absolute;
+            top: 2%;
+            left: 50%;
+            background: white;
+            /* opacity: 0; */
+            transform: translate(-50%);
+            transition: opacity ease-in-out 0.2s;
+            box-shadow: 0 30px 40px 0 rgba(16, 36, 94, 0.2);
+            border-radius: 4px;
+            z-index: 20;
+            color: #010101;
+            button {
+                width: 44px;
+                height: 44px;
+                background: white;
+                border: 0;
+                font: inherit;
+                font-size: 0.8em;
+                color: #010101;
+                &:enabled:hover {
+                    cursor: pointer;
+                }
+                &:disabled {
+                    opacity: 0.5;
+                }
+                &:disabled:hover {
+                    cursor: not-allowed;
+                }
+                &:enabled:hover,&:enabled:focus{
+                    background-color: #e6e6e6;
+                    outline: 0;
+                }
+                &:first-child{
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                &:last-child {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+            }
+            span {
+                font: inherit;
+                font-size: 0.8em;
+                padding: 0 0.5em;
+            }
+
+        }
+    }
+
     .recommend{
         display: flex;
         gap:0.5em;
