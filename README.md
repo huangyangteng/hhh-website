@@ -29,8 +29,8 @@ yarn test
 ## Build
 
 ```shell
-# build by docker
-node release
+# build docker image
+sh docker-build-local.sh
 
 ```
 
