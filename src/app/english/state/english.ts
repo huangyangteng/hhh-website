@@ -12,4 +12,4 @@ export interface PhoneticsSymbolItem{
 export const selectedSymbol=atom<PhoneticsSymbolItem|false>(false)
 
 
-export const globalVolumeAtom=atomWithStorage('globalVolume',0.5)
+export const globalVolumeAtom=atomWithStorage('globalVolume',0.2)

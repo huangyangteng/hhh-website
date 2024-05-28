@@ -1,5 +1,6 @@
 import http from "@/apis/http";
 import {BaseResType, ResCode} from "@/apis/type";
+import {useQuery} from "@tanstack/react-query";
 
 interface BBVideoItem{
     title:string
@@ -49,10 +50,24 @@ export function getWordInfo(word){
         if(res.code===ResCode.Success){
             return res.data
         }else{
-            return null
+            return 'word not found '
         }
     }).catch(err=>{
         console.log('🐔🐔🐔getWordInfo error',err)
         return null
     })
+}
+
+export const useWord=(word)=>{
+    const { isLoading, data } = useQuery({
+        queryKey: ["word", word],
+        queryFn: async () => {
+            const data = await getWordInfo(word);
+            return data
+        },
+        enabled: !!word
+    });
+    return {isLoading,data}
+
+
 }

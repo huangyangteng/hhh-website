@@ -19,6 +19,7 @@ export default function PhoneticsVideo() {
   useEffect(() => {
     if (!phonetics) return;
     videoDom.current.currentTime = phonetics.start;
+    videoDom.current.volume = globalVolume;
     videoDom.current.play();
     setEndTime(phonetics.end);
   }, [phonetics]);
@@ -26,6 +27,7 @@ export default function PhoneticsVideo() {
   useEffect(() => {
     if (!videoDom.current) return;
     videoDom.current.volume = globalVolume;
+
   }, [globalVolume, videoDom]);
 
   const onTimeUpdate = () => {

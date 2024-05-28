@@ -6,18 +6,9 @@
     flex-direction: column;
     gap:0.5em;
     .query-word{
-        .word-content {
-            padding: 0.5em;
-            .word-item {
-                display: flex;
-                align-items: center;
-                gap: 0.5em;
-                span{
-                    cursor: pointer;
-                }
-            }
-        }
+
     }
+
 
     .marks {
         font-size: 14px;
@@ -170,11 +161,15 @@
         display: flex;
         flex-direction: column;
         gap:0.5em;
+        padding-top:1em;
         .word-item{
             font-size: 1.5em;
             display: flex;
             gap:1em;
             letter-spacing: 2px;
+            b{
+                cursor: pointer;
+            }
         }
     }
     .volume-wrapper{
@@ -183,6 +178,22 @@
         gap:0.5em;
         .ant-slider{
             flex:1;
+        }
+    }
+
+    .word-content {
+        padding: 0.5em;
+        .word-sound-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            b{
+                letter-spacing: 2px;
+                font-weight: 400;
+            }
+            span{
+                cursor: pointer;
+            }
         }
     }
 }
