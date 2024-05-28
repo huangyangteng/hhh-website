@@ -4,6 +4,7 @@ import Recommend from "@/app/english/components/Recommend";
 import QueryWord from "@/app/english/components/QueryWord";
 import WordList from "@/app/english/components/WordList";
 import PhoneticsResource from "@/app/english/components/PhoneticsResource";
+import VolumeControl from "@/app/english/components/VolumeControl";
 
 export default function English(){
     return <div className='english-wrapper'>
@@ -12,5 +13,6 @@ export default function English(){
         <PhoneticsResource/>
         <WordList/>
         <Recommend/>
+        <VolumeControl/>
     </div>
 }

@@ -1,13 +1,13 @@
 "use client";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Input } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import { getWordInfo } from "@/app/english/apis";
+import {globalVolumeAtom} from "@/app/english/state/english";
 
-axios.defaults.baseURL = "https://leexiao.site/gk-api";
+import {useAtomValue} from 'jotai'
 
 // 预加载音频文件
 function preloadAudio(audios) {
@@ -30,6 +30,9 @@ export default function QueryWord() {
   const [searchWord, setSearchWord] = useState(searchParams.get("word") || "");
   const [errorMsg,setErrorMsg]=useState('')
   const [enabled, setEnabled] = useState(!!searchWord);
+
+  const globalVolume=useAtomValue(globalVolumeAtom)
+
   const { isLoading, data } = useQuery({
     queryKey: ["word", searchWord],
     queryFn: async () => {
@@ -39,12 +42,12 @@ export default function QueryWord() {
         const { soundmark, meaning } = data;
         setSoundMark(soundmark);
         setMeaning(meaning);
-        preloadAudio([
-          soundMark.uk.sound,
-          soundMark.uk.fsound,
-          soundMark.us.sound,
-          soundMark.us.fsound,
-        ]);
+        // preloadAudio([
+        //   soundMark.uk.sound,
+        //   soundMark.uk.fsound,
+        //   soundMark.us.sound,
+        //   soundMark.us.fsound,
+        // ]);
       } else {
         setErrorMsg('未找到该单词')
       }
@@ -71,6 +74,7 @@ export default function QueryWord() {
   };
   const playSound = (src) => {
     let audio = new Audio(src);
+    audio.volume=globalVolume
     audio.load();
     audio.play();
   };

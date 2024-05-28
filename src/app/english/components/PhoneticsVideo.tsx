@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useAtom } from "jotai";
-import { selectedSymbol } from "@/app/english/state/english";
+import { useAtom, useAtomValue } from "jotai";
+import { globalVolumeAtom, selectedSymbol } from "@/app/english/state/english";
 import { getVideoUrl } from "@/app/english/apis";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
 
 export default function PhoneticsVideo() {
   const videoDom = useRef<HTMLVideoElement>(null);
+  const globalVolume = useAtomValue(globalVolumeAtom);
   const [phonetics, setPhonetics] = useAtom(selectedSymbol);
   const [endTime, setEndTime] = useState(0);
   const { isLoading, data: videoUrl } = useQuery({
@@ -19,9 +20,14 @@ export default function PhoneticsVideo() {
     if (!phonetics) return;
     videoDom.current.currentTime = phonetics.start;
     videoDom.current.play();
-    videoDom.current.volume = 0.5;
     setEndTime(phonetics.end);
   }, [phonetics]);
+
+  useEffect(() => {
+    if (!videoDom.current) return;
+    videoDom.current.volume = globalVolume;
+  }, [globalVolume, videoDom]);
+
   const onTimeUpdate = () => {
     if (endTime !== 0 && videoDom.current.currentTime >= endTime) {
       videoDom.current.pause();
@@ -34,7 +40,7 @@ export default function PhoneticsVideo() {
   return (
     <div className="phonetics-video-wrapper">
       {isLoading ? (
-        <Spin  ></Spin>
+        <Spin></Spin>
       ) : (
         <video
           className="example-video"

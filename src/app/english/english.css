@@ -177,4 +177,12 @@
             letter-spacing: 2px;
         }
     }
+    .volume-wrapper{
+        display: flex;
+        align-items: center;
+        gap:0.5em;
+        .ant-slider{
+            flex:1;
+        }
+    }
 }
