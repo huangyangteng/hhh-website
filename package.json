@@ -10,11 +10,12 @@
         "dev:prod": "env-cmd -f .env.production npm run dev",
         "build:dev": "env-cmd -f .env.development npm run build",
         "build:prod": "env-cmd -f .env.production npm run build",
-        "build:docker": "sh ./docker-build-local.sh",
         "start:dev": "env-cmd -f .env.development npm run start",
         "start:prod": "env-cmd -f .env.production npm run start",
         "lint": "next lint",
-        "test": "vitest"
+        "test": "vitest",
+        "build:docker": "sh ./docker-build-local.sh",
+        "deploy": "node deploy"
     },
     "dependencies": {
         "@ant-design/cssinjs": "^1.18.1",
