@@ -6,6 +6,7 @@ import "react-pdf/dist/Page/TextLayer.css";
 import { useState, useEffect } from "react";
 import { selectedSymbol } from "@/app/english/state/english";
 import { pdfMap } from "../data/index";
+import { Progress, Spin } from "antd";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -40,7 +41,10 @@ export default function PhoneticsPdf() {
     if (!page || page <= 1 || page >= totalPages - 1) return;
     setPageNumber(page);
   };
-
+  const [percent, setPercent] = useState(0);
+  const onLoadProgress = ({ loaded, total }) => {
+    setPercent(loaded / total * 100);
+  };
   return (
     <div className="phonetics-pdf-wrapper">
       <div className="page-controls">
@@ -55,12 +59,15 @@ export default function PhoneticsPdf() {
         </button>
       </div>
 
-      <div className="pdf-wrapper">
-        <div className="pdf-content">
-          <Document file={PDF_LINK} onLoadSuccess={onDocumentLoadSuccess}>
-            <Page pageNumber={pageNumber} />
-          </Document>
-        </div>
+      <div className="pdf-content">
+        <Document
+          file={PDF_LINK}
+          onLoadSuccess={onDocumentLoadSuccess}
+          loading={<Progress type="circle" percent={percent} format={percent=>`${percent.toFixed(2)}%`} />}
+          onLoadProgress={onLoadProgress}
+        >
+          <Page pageNumber={pageNumber} />
+        </Document>
       </div>
     </div>
   );
