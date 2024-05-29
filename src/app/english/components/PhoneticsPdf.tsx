@@ -38,7 +38,7 @@ export default function PhoneticsPdf() {
     setPageNumber(pageNumber - 1);
   };
   const toPage = (page: number) => {
-    if (!page || page <= 1 || page >= totalPages - 1) return;
+    if (!page || page < 1 || page > totalPages - 1) return;
     setPageNumber(page);
   };
   const [percent, setPercent] = useState(0);

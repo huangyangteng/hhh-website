@@ -68,7 +68,11 @@ export default function WordList() {
 function WordListContent({ select }) {
   let [map, setMapState] = useState<Map<number, WordInfo>>(new Map());
   const list = words.filter((item) => item.s.indexOf(select.text) >= 0);
-
+  useEffect(()=>{
+    if(select){
+      setMapState(new Map())
+    }
+  },[select])
   const [translateIndex, setIndex] = useState(-1);
   const word = translateIndex == -1 ? "" : list[translateIndex].w;
   const { data, isLoading } = useWord(word);

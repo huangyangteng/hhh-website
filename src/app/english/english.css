@@ -197,8 +197,8 @@
         padding-top: 1em;
 
         .word-item {
-            font-size: 1.5em;
             display: flex;
+            font-size: 1.5em;
             gap: 1em;
             letter-spacing: 2px;
 
