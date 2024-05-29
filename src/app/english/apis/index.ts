@@ -32,7 +32,7 @@ interface SoundMark{
     fsound:string
     sound:string
 }
-export interface WordInfo{
+export interface WordInfoType {
     level:string
     soundmark:Record<string, SoundMark>
     meaning:string[]
@@ -41,7 +41,7 @@ export interface WordInfo{
 
 }
 export function getWordInfo(word){
-    return http.request<WordInfo,BaseResType<WordInfo>>({
+    return http.request<WordInfoType,BaseResType<WordInfoType>>({
         url:'/util/translate',
         params:{
             word

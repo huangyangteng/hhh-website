@@ -1,5 +1,5 @@
 import {describe,it,expect} from "vitest";
-import {getVideoUrl, getWordInfo, WordInfo} from "@/app/english/apis/index";
+import {getVideoUrl, getWordInfo, WordInfoType} from "@/app/english/apis/index";
 
 describe('English API Test',()=>{
     describe('getVideoURL',()=>{

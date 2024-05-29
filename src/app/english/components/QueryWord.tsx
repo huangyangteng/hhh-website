@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Input, InputRef } from "antd";
 import { useWord } from "@/app/english/apis";
 
-import { WordItem } from "@/app/english/components/WordList";
+import WordItemInfo from "@/app/english/components/WordItemInfo";
 
 
 export default function QueryWord() {
@@ -44,7 +44,7 @@ export default function QueryWord() {
         onKeyUp={fetchWord}
         onFocus={onFocus}
       />
-      {<WordItem info={data} isLoading={isLoading} />}
+      {<WordItemInfo info={data} isLoading={isLoading} />}
     </div>
   );
 }

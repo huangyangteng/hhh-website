@@ -1,114 +1,70 @@
 "use client";
 import { useAtomValue } from "jotai";
-import { globalVolumeAtom, selectedSymbol } from "@/app/english/state/english";
+import { selectedSymbol } from "@/app/english/state/english";
 import { words } from "@/app/english/data/word";
 import { useEffect, useState } from "react";
-import { useWord, WordInfo } from "@/app/english/apis";
-import { Skeleton } from "antd";
+import { useWord, WordInfoType } from "@/app/english/apis";
+import WordItemInfo from "@/app/english/components/WordItemInfo";
+import { Virtuoso } from "react-virtuoso";
 
-export function WordItem({
-  info,
-  style = {},
-  isLoading = false,
-}: {
-  info: WordInfo | string | null;
-  style?: Record<string, any>;
-  isLoading: boolean;
-}) {
-  const globalVolume = useAtomValue(globalVolumeAtom);
-
-  const playSound = (src) => {
-    let audio = new Audio(src);
-    audio.volume = globalVolume;
-    audio.load();
-    audio.play();
-  };
-  if (isLoading)
-    return (
-      <div style={style}>
-        <Skeleton active={true} title={false} />
-      </div>
-    );
-  if (!info) return null;
-  if (typeof info === "string") return <p>{info}</p>;
-  const { meaning, soundmark: soundMark } = info;
-  return (
-    <div style={style}>
-      <div className="word-content">
-        <div>{meaning.filter((item) => Boolean(item.trim())).join(" | ")}</div>
-        {soundMark.uk && (
-          <div className="word-sound-item">
-            <b>{soundMark.uk.text}</b>
-            <span onClick={() => playSound(soundMark.uk.sound)}>👨🏼</span>
-            <span onClick={() => playSound(soundMark.uk.fsound)}>👩🏻‍🦳</span>
-          </div>
-        )}
-        {soundMark.us && (
-          <div className="word-sound-item">
-            <b>{soundMark.us.text}</b>
-            <span onClick={() => playSound(soundMark.us.sound)}>👨🏼</span>
-            <span onClick={() => playSound(soundMark.us.fsound)}>👩🏻‍🦳</span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+interface WordInfoExtend {
+  w: string;
+  s: string;
+  r: string;
+  info?: WordInfoType;
 }
 
-/**
- * 获取单词含义的接口封装成hooks  useWord(word)
- * onClick index,show word   map.set(index,obj)
- */
+
+
 export default function WordList() {
   const select = useAtomValue(selectedSymbol);
   if (!select) return null;
   return <WordListContent select={select} />;
 }
 
-function WordListContent({ select }) {
-  let [map, setMapState] = useState<Map<number, WordInfo>>(new Map());
-  const list = words.filter((item) => item.s.indexOf(select.text) >= 0);
-  useEffect(()=>{
-    if(select){
-      setMapState(new Map())
-    }
-  },[select])
-  const [translateIndex, setIndex] = useState(-1);
-  const word = translateIndex == -1 ? "" : list[translateIndex].w;
-  const { data, isLoading } = useWord(word);
-  useEffect(() => {
-    setMapState(new Map(map.set(translateIndex, data)));
-  }, [data, translateIndex]);
-
-  const translateWord = (index) => {
-    setIndex(index);
+function WordItem({ item }) {
+  const [word, setWord] = useState("");
+  const { isLoading, data } = useWord(word);
+  const translateWord = () => {
+      setWord(item.w);
   };
   return (
+    <>
+      <div className={"word-item"} key={item.w}>
+        <span>{item.w}</span>
+        <span>{item.s}</span>
+        {isLoading ? "🤯" : <b onClick={() => translateWord()}>💭</b>}
+      </div>
+      <WordItemInfo
+        isLoading={isLoading}
+        style={{
+          paddingLeft: "1em",
+        }}
+        info={data}
+      />
+    </>
+  );
+}
+
+function WordListContent({ select }) {
+  const [wordList, setWordList] = useState<WordInfoExtend[]>(
+    words.filter((item) => {
+      return item.s.includes(select.text);
+    }),
+  );
+  useEffect(() => {
+    setWordList(words.filter((item) => item.s.includes(select.text)));
+  }, [select.text]);
+
+  return (
     <div className="word-list">
-      {list.map((item, index) => (
-        <>
-          <div className={"word-item"} key={item.w}>
-            <span>{item.w}</span>
-            <span>{item.s}</span>
-            {isLoading && index === translateIndex ? (
-              "🤯"
-            ) : (
-              <b onClick={() => translateWord(index)}>💭</b>
-            )}
-          </div>
-          {map.has(index) ? (
-            <WordItem
-              isLoading={isLoading && index === translateIndex}
-              style={{
-                paddingLeft: "1em",
-              }}
-              info={map.get(index)}
-            />
-          ) : (
-            ""
-          )}
-        </>
-      ))}
+      <Virtuoso
+        style={{ height: "280px" }}
+        totalCount={wordList.length}
+        itemContent={(index) => (
+          <WordItem key={wordList[index].w} item={wordList[index]} />
+        )}
+      />
     </div>
   );
 }
