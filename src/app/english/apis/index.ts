@@ -40,7 +40,7 @@ export interface WordInfoType {
     examples:string[]
 
 }
-export function getWordInfo(word){
+export function getWordInfo(word):Promise<WordInfoType|null|string>{
     return http.request<WordInfoType,BaseResType<WordInfoType>>({
         url:'/util/translate',
         params:{

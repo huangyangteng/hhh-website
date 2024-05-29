@@ -1,12 +1,13 @@
 "use client";
-import { endMap, list } from "@/app/english/data";
-import { useAtom } from "jotai";
-import { selectedSymbol } from "@/app/english/state/english";
+import { endMap, symbolList } from "@/app/english/data";
+import { useAtom, useAtomValue } from "jotai";
+import { selectedSymbol, splitSymbolAtom } from "@/app/english/state/english";
 
 export default function PhoneticSymbol() {
-  const [phonetics, setPhonetics] = useAtom(selectedSymbol);
+  const [symbol, setSymbol] = useAtom(selectedSymbol);
+  const splitSymbols = useAtomValue(splitSymbolAtom);
   const select = (item) => {
-    setPhonetics({
+    setSymbol({
       text: item.text,
       start: item.start,
       end: endMap.get(item.text),
@@ -22,14 +23,18 @@ export default function PhoneticSymbol() {
       <div className="title-2">清辅音</div>
       <div className="title-2">浊辅音</div>
 
-      {list.map((item, index) => (
+      {symbolList.map((item, index) => (
         <div
           onClick={() => select(item)}
-          // className={"text text-" + item.text}
-          className={`text text-${item.text} ${phonetics && item.text==phonetics.text?'active':''} `}
+          className={`text text-${item.text} ${symbol && item.text == symbol.text ? "active" : ""} ${
+            splitSymbols.includes(item.text) ? "split" : ""
+          }  `}
           key={item.text}
         >
-          {item.text}
+          <span className={'text-symbol'}>
+              {item.text}
+           <i className={'order'}>{splitSymbols.findIndex(i=>i==item.text) +1}</i>
+          </span>
         </div>
       ))}
     </div>

@@ -6,6 +6,9 @@ import { Input, InputRef } from "antd";
 import { useWord } from "@/app/english/apis";
 
 import WordItemInfo from "@/app/english/components/WordItemInfo";
+import {splitSymbolAtom} from "@/app/english/state/english";
+import {useAtomValue, useSetAtom} from "jotai";
+import {splitPhoneticsSymbol} from "@/app/english/utils/english";
 
 
 export default function QueryWord() {
@@ -16,6 +19,20 @@ export default function QueryWord() {
 
   const [word, setWord] = useState(searchParams.get("word") || "");
   const { isLoading, data } = useWord(word);
+  const setSplitSymbol = useSetAtom(splitSymbolAtom);
+
+  useEffect(()=>{
+    if(searchWord==''){
+      setSplitSymbol([])
+    }
+  },[searchWord])
+
+  useEffect(()=>{
+    if(data&& typeof data !== 'string'){
+      const text=data.soundmark.us.text.replace(/[英美\[\]]/g,'')
+        setSplitSymbol(splitPhoneticsSymbol(text))
+    }
+  },[data])
 
   const fetchWord = (e) => {
     if (e.key === "Enter") {

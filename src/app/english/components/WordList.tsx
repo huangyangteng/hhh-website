@@ -1,7 +1,7 @@
 "use client";
 import { useAtomValue } from "jotai";
 import { selectedSymbol } from "@/app/english/state/english";
-import { words } from "@/app/english/data/word";
+import { words } from "@/app/english/data/big-data/word";
 import { useEffect, useState } from "react";
 import { useWord, WordInfoType } from "@/app/english/apis";
 import WordItemInfo from "@/app/english/components/WordItemInfo";

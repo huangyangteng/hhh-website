@@ -1,4 +1,4 @@
-export const list = [
+export const symbolList = [
     { text: 'i', start: 140.510145, page: 1 },
     { text: 'ɝ', start: 149.16148, page: 1 },
     { text: 'a', start: 131.429802, page: 1 },
@@ -50,16 +50,18 @@ export const list = [
     { text: 'j', start: 91.418903, page: 1 },
     { text: 'w', start: 88.323028, page: 1 }
 ]
+
+export const phoneticList = symbolList.map((i) => i.text)
 /**
  * 建立一个map，用于取end
  * key   value
  * text   end
  */
-let sortedList = list.map((i) => i).sort((a, b) => a.start - b.start)
+let sortedList = symbolList.map((i) => i).sort((a, b) => a.start - b.start)
 export const endMap = new Map(
     sortedList.map((item, index) => [
         item.text,
-        sortedList[index + 1]?.start || null
+        sortedList[index + 1]?.start || 189  //最后一个音标没有end,设置为视频的duration
     ])
 )
 
