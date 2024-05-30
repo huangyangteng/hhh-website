@@ -36,7 +36,7 @@ export default function QueryWord() {
 
   const fetchWord = (e) => {
     if (e.key === "Enter") {
-      setWord(searchParams.get("word"));
+      setWord(searchWord);
     }
   };
 
