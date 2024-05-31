@@ -37,12 +37,12 @@ export default function QueryWord() {
   const fetchWord = (e) => {
     if (e.key === "Enter") {
       setWord(searchWord);
+      router.replace(`${pathname}?word=${e.target.value}`);
     }
   };
 
   const handleSearch = (e) => {
     setSearchWord(e.target.value);
-    router.replace(`${pathname}?word=${e.target.value}`);
   };
   const inputRef = useRef<InputRef>(null);
   const onFocus = () => {
