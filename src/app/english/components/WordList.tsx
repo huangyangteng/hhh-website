@@ -14,19 +14,17 @@ interface WordInfoExtend {
   info?: WordInfoType;
 }
 
-
-
 export default function WordList() {
   const select = useAtomValue(selectedSymbol);
   if (!select) return null;
   return <WordListContent select={select} />;
 }
 
-function WordItem({ item }) {
+export function WordItem({ item }) {
   const [word, setWord] = useState("");
   const { isLoading, data } = useWord(word);
   const translateWord = () => {
-      setWord(item.w);
+    setWord(item.w);
   };
   return (
     <>
@@ -60,10 +58,8 @@ function WordListContent({ select }) {
     <div className="word-list">
       <Virtuoso
         style={{ height: "280px" }}
-        totalCount={wordList.length}
-        itemContent={(index) => (
-          <WordItem key={wordList[index].w} item={wordList[index]} />
-        )}
+        data={wordList}
+        itemContent={(index, item) => <WordItem item={item} key={item.w} />}
       />
     </div>
   );

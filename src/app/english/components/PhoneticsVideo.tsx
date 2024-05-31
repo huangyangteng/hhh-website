@@ -7,38 +7,43 @@ import { getVideoUrl } from "@/app/english/apis";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
 
+const VIDEO_URL = "https://www.bilibili.com/video/BV1sp4y1z74P/";
 export default function PhoneticsVideo() {
-  const videoDom = useRef<HTMLVideoElement>(null);
-  const globalVolume = useAtomValue(globalVolumeAtom);
-  const [phonetics, setPhonetics] = useAtom(selectedSymbol);
-  const [endTime, setEndTime] = useState(0);
   const { isLoading, data: videoUrl } = useQuery({
     queryKey: ["videoUrl"],
-    queryFn: () => getVideoUrl("https://www.bilibili.com/video/BV1sp4y1z74P/"),
+    queryFn: () => getVideoUrl(VIDEO_URL),
   });
+
+  const videoDom = useRef<HTMLVideoElement>(null);
+  const globalVolume = useAtomValue(globalVolumeAtom);
+  const selectSymbol=useAtomValue(selectedSymbol)
+
+  const [endTime, setEndTime] = useState(0);
+
   useEffect(() => {
-    if (!phonetics) return;
-    videoDom.current.currentTime = phonetics.start;
+    if (!selectSymbol) return;
+    videoDom.current.currentTime = selectSymbol.start;
     videoDom.current.volume = globalVolume;
     videoDom.current.play();
-    setEndTime(phonetics.end);
-  }, [phonetics]);
+    setEndTime(selectSymbol.end);
+  }, [selectSymbol]);
 
   useEffect(() => {
     if (!videoDom.current) return;
     videoDom.current.volume = globalVolume;
-
   }, [globalVolume, videoDom]);
 
   const onTimeUpdate = () => {
     if (endTime !== 0 && videoDom.current.currentTime >= endTime) {
       videoDom.current.pause();
-      setEndTime(null);
-      if (phonetics) {
-        videoDom.current.currentTime = phonetics.start;
+      setEndTime(0);
+      if (selectSymbol) {
+        videoDom.current.currentTime = selectSymbol.start;
       }
     }
   };
+
+
   return (
     <div className="phonetics-video-wrapper">
       {isLoading ? (
