@@ -11,6 +11,6 @@ export default function Wechat() {
             width:'100%',
             height: '100%',
             objectFit:'contain'
-        }} alt={'wechat:hhhyangteng'} src={'/wechat.jpg'}/>
+        }} alt={'wechat:hhhyangteng'} src={'/images/wechat.jpg'}/>
     </div>;
 }

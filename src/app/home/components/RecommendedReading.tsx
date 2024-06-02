@@ -45,14 +45,14 @@ export default function RecommendedReading() {
       description:
           "专为程序员编写的英语学习指南。" ,
       link: "https://www.bilibili.com/video/BV1gB4y1B7CC/",
-      logo: "/buzhang.jpg"
+      logo: "/images/buzhang.jpg"
     },
     {
       name: "150天听懂英文剧",
       description:
           "跟我150天，保证你不看字幕听懂英文剧" ,
       link: "https://www.bilibili.com/video/BV1Gx421U7vV/",
-      logo: "/buzhang.jpg"
+      logo: "/images/buzhang.jpg"
     },
     {
       name: "六个月即能学好英语",
