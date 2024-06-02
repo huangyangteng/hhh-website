@@ -1,9 +1,12 @@
 :root {
     --bg-color-main: #0d0d0f;
     --bg-color-secondary: #16161b;
-    --font-color:rgb(228, 226, 222);
+    --font-color:rgb(244,244,244);
+    --font-subtitle-color:rgba(228, 226, 222,0.7);
     --link-color:rgba(255, 255, 255, 0.7);
     --color-primary:rgb(22, 119, 255);
+    --radius-sm:4px;
+    --radius-md:8px;
 
 }
 /* 设置滚动条的样式 */
@@ -34,9 +37,11 @@
 }
 a{
     color:var(--link-color);
-    text-decoration-color: var(--link-color);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.3s;
     &:hover{
-        opacity: 0.9;
+        opacity: 1;
     }
 }
 
@@ -47,15 +52,3 @@ body {
     background: var(--bg-color-main);
 }
 
-.home-wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding-top: 1em;
-    gap:1em;
-    h1{
-        text-align: center;
-
-    }
-}
