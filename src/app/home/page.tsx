@@ -3,6 +3,7 @@ import Wave from "@/app/home/components/Wave";
 import Header from "@/app/home/components/Header";
 import Content from "@/app/home/components/Content";
 import Bottom from "@/app/home/components/Bottom";
+import Redirect from "@/app/home/components/Redirect";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Content />
       <Wave />
       <Bottom />
+      <Redirect />
     </section>
   );
 }

@@ -17,7 +17,7 @@ function BlockBox({
   return (
     <div className={"block-box-item"}>
       <img
-        src={"https://leexiao.site/img/cyborg-3.3a6e1455.png"}
+        src={"/images/banner.png"}
         alt={item.name}
       />
       <h3>{item.name}</h3>

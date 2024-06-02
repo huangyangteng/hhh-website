@@ -15,7 +15,8 @@
         "lint": "next lint",
         "test": "vitest",
         "build:docker": "sh ./docker-build-local.sh",
-        "deploy": "node deploy"
+        "deploy": "node deploy",
+        "release": "sh ./docker-build-local.sh && node deploy"
     },
     "dependencies": {
         "@ant-design/cssinjs": "^1.18.1",
