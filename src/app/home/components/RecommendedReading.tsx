@@ -31,7 +31,7 @@ export default function RecommendedReading() {
       description:
         "由Redux的创始人之一Dan Abramov 创立，分享了他关于 React 的技巧",
       link: "https://overreacted.io/",
-      logo: "https://github.com/gaearon.png",
+      logo: "https://source.boringavatars.com/beam",
     },
     {
       name: "程序员英语学习指南",

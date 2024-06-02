@@ -1,9 +1,8 @@
 # My Personal Website
+[https://leexiao.site/](https://leexiao.site/)
 
-Doing something useful.
+I built this site to help myself learn efficiently and realise some of my ideas.
 
-* [english learning](https://leexiao.site/english)
-* [my personal website](https://leexiao.site/)
 
 
 ## Install
@@ -30,16 +29,18 @@ yarn test
 
 ```shell
 # build docker image
-sh docker-build-local.sh
+sh docker-build-local.sh 
+# or
+yarn build:docker
 
 ```
 
-
+## Dependence
+* [Next.js](https://nextjs.org/)
+* [boring-avatars](https://github.com/boringdesigners/boring-avatars?tab=readme-ov-file)
 
 ## Contributing
 
 PRs accepted.
 
-## License
 
-MIT © Richard McRichface

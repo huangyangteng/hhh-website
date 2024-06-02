@@ -34,7 +34,7 @@
                     display: flex;
                     gap:3em;
                     a{
-                        color:var(--font-color);
+                        color:#fff;
                         text-decoration: none;
                         transition: 0.3s;
                         &:hover{

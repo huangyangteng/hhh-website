@@ -22,7 +22,7 @@ export default function PhoneticsPdf() {
       toPage(no - 4);
     }
   }, [select]);
-  const [totalPages, setTotalPages] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
 
   function onDocumentLoadSuccess({ numPages }) {
