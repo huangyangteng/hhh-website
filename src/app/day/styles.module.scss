@@ -2,18 +2,29 @@
     background-color: var(--bg-color-main);
     text-align: center;
     color: rgba(255, 255, 255, 0.8);
+    position: relative;
 }
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 50px;
+    padding: 0 50px;
+    height: 78px;
+    position: sticky;
+    top:0;
+    background: #000;
+    h2{
+        font-size: 24px;
+        b{
+            color:var(--color-primary)
+        }
+    }
 }
 .calender {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding: 10px;
+    padding: 1em;
 }
 .month {
     display: flex;

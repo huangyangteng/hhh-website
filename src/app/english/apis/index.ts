@@ -71,3 +71,9 @@ export const useWord=(word)=>{
 
 
 }
+
+export function getWordEnEn(word:string){
+    return http.request({
+        url:'https://api.dictionaryapi.dev/api/v2/entries/en/'+word
+    })
+}
