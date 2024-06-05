@@ -2,10 +2,10 @@
     max-width: 640px;
     width: 100%;
     margin: 0 auto;
-    padding-top: 1em;
     display: flex;
     flex-direction: column;
     gap: 1em;
+    padding:1em 0.5em;
     >h1{
         font-size: 20px;
         line-height: 1.5;
@@ -14,7 +14,7 @@
 
     }
     .peppa-video {
-        min-height: 320px;
+        min-height: 360px;
         position: relative;
 
         .ant-spin {
