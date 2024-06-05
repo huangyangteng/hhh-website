@@ -1,0 +1,46 @@
+.peppa-wrapper {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    >h1{
+        font-size: 20px;
+        line-height: 1.5;
+    }
+    .peppa-navbar{
+
+    }
+    .peppa-video {
+        min-height: 320px;
+        position: relative;
+
+        .ant-spin {
+            position: absolute;
+            margin:auto;
+            width: 40px;
+            height: 40px;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+    }
+
+    .peppa-lines{
+        height: 420px;
+        overflow-y: auto;
+        .line-display{
+            display: flex;
+            gap:0.5em;
+        }
+        .line-edit{
+            margin-top: 0.5em;
+            display: flex;
+            gap:0.5em;
+        }
+    }
+}
