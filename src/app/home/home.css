@@ -118,6 +118,7 @@
                 }
 
                 .recommend-reading {
+                    margin-top:10em;
                     > header {
                         display: flex;
                         align-items: center;
@@ -134,11 +135,17 @@
                             background-color: rgb(112, 112, 112);
                         }
                     }
+                    .recommend-section-title{
+                        line-height: 1.5;
+                        padding:0.5em;
+
+                    }
 
                     .recommend-reading-list {
                         display: grid;
                         grid-template-columns: repeat(3, 1fr);
                         gap: 1em;
+                        margin-bottom: 2em;
 
                         .recommend-item {
                             display: flex;
