@@ -165,6 +165,7 @@ export function useBVideoInfo(videoId: string) {
     return useQuery({
         queryKey: ['peppa', videoId],
         queryFn: () => fetchBVideo(videoId),
+        enabled: !!videoId,
     })
 }
 

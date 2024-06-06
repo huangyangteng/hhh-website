@@ -15,7 +15,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 export default function PeppaLines() {
     const search = useSearchParams()
-    const { isLoading, data } = useBVideoLines(search.get('vid'))
+    const { data } = useBVideoLines(search.get('vid'))
     const items = (data || []).map((item) => {
         return {
             key: item.en,
@@ -110,7 +110,6 @@ function EditLine({ info }: { info: VideoLineType }) {
             <Button onClick={() => goForward()}>快进</Button>
             <Button onClick={() => play()}>播放</Button>
 
-            <Button onClick={() => changeTime()}>获取</Button>
             <Button onClick={() => submitTime()}>提交</Button>
         </div>
     )
