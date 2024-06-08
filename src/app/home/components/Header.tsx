@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { GEEK_TIME_ARTICLES_LINK, NOTION_LINK } from '@/app/home/data'
-import { Button } from 'antd'
 
 export default function Header() {
     let list = [

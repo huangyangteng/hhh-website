@@ -159,7 +159,7 @@
                         display: flex;
                         align-items: center;
                         width: 100%;
-                        margin: 60px 0px;
+                        margin: 60px 0;
                         height: 30px;
                         color: rgba(255, 255, 255, 0.85);
                         gap: 1em;

@@ -69,8 +69,7 @@ export const useWord = (word) => {
     const { isLoading, data } = useQuery({
         queryKey: ['word', word],
         queryFn: async () => {
-            const data = await getWordInfo(word)
-            return data
+            return await getWordInfo(word)
         },
         enabled: !!word,
     })
