@@ -148,7 +148,6 @@ export function fetchBVideo(
         })
         .then((res) => {
             if (res.code === 2000) {
-                console.log(res.data)
                 return res.data.src
             } else {
                 return null
@@ -202,6 +201,7 @@ export const useBVideoLines = (videoId) => {
     return useQuery({
         queryKey: ['peppa', 'lines', videoId],
         queryFn: () => fetchBVideoLines(videoId),
+        enabled: !!videoId,
     })
 }
 

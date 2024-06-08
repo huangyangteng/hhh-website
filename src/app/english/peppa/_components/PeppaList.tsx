@@ -1,6 +1,6 @@
 'use client'
 import { usePeppaVideos } from '@/app/english/apis'
-import { Pagination } from 'antd'
+import { Pagination, Skeleton } from 'antd'
 import { useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -18,14 +18,16 @@ export default function PeppaList() {
     }, [data, current])
     return (
         <div className="peppa-navbar">
-            <Pagination
-                current={current}
-                onChange={(page) => setCurrent(page)}
-                showSizeChanger={false}
-                pageSize={1}
-                total={total}
-                showQuickJumper={true}
-            />
+            <Skeleton loading={isLoading} active paragraph={false}>
+                <Pagination
+                    current={current}
+                    onChange={(page) => setCurrent(page)}
+                    showSizeChanger={false}
+                    pageSize={1}
+                    total={total}
+                    showQuickJumper={true}
+                />
+            </Skeleton>
         </div>
     )
 }

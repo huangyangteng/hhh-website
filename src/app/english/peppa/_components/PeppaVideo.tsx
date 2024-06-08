@@ -10,7 +10,7 @@ export default function PeppaVideo() {
     const { isLoading, data } = useBVideoInfo(searchParams.get('vid'))
     return (
         <div className="peppa-video">
-            {isLoading && <Spin size="large" />}
+            {(!data || isLoading) && <Spin size="large" />}
             <VideoPlayer id={'peppa-video'} src={data}></VideoPlayer>
         </div>
     )

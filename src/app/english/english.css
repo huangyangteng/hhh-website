@@ -211,13 +211,6 @@
     }
 
     .word-list {
-        //height: 280px;
-        //overflow-y: auto;
-        //display: flex;
-        //flex-direction: column;
-        //gap: 0.5em;
-        //padding-top: 1em;
-
         .word-item {
             display: flex;
             font-size: 1.5em;
@@ -259,3 +252,4 @@
         }
     }
 }
+
