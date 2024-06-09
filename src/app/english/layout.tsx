@@ -5,14 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Tooltip } from 'antd'
 import './layout.css'
-/**
- * todo:
- * 1. 渲染列表
- * 2. 高亮选中
- * 3. 点击跳转 Link
- * 4. icon
- * 5. tooltip
- */
+
 function EnSidebar() {
     const [expand, setExpand] = useState(true)
     const list = [

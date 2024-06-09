@@ -1,5 +1,5 @@
 'use client'
-import { Button, Collapse, Input, message } from 'antd'
+import { Button, Collapse, Input, message, Skeleton } from 'antd'
 import {
     fetchEditTime,
     useBVideoLines,
@@ -15,7 +15,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 export default function PeppaLines() {
     const search = useSearchParams()
-    const { data } = useBVideoLines(search.get('vid'))
+    const { data, isLoading } = useBVideoLines(search.get('vid'))
     const items = (data || []).map((item) => {
         return {
             key: item.en,
@@ -32,7 +32,9 @@ export default function PeppaLines() {
 
     return (
         <div className="peppa-lines">
-            <Collapse items={items} activeKey={activeKey}></Collapse>
+            <Skeleton active loading={isLoading}>
+                <Collapse items={items} activeKey={activeKey}></Collapse>
+            </Skeleton>
         </div>
     )
 }
