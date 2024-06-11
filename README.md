@@ -37,7 +37,8 @@ yarn build:docker
 
 ## Dependence
 * [Next.js](https://nextjs.org/)
-* [boring-avatars](https://github.com/boringdesigners/boring-avatars?tab=readme-ov-file)
+* avatar from  [boring-avatars](https://github.com/boringdesigners/boring-avatars?tab=readme-ov-file)
+* image from https://www.freepik.com/
 
 ## Contributing
 

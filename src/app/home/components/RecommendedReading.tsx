@@ -56,7 +56,7 @@ const enList = [
         name: '程序员英语学习指南',
         description: '专为程序员编写的英语学习指南。',
         link: 'https://a-programmers-guide-to-english.harryyu.me/',
-        logo: 'https://avatars.githubusercontent.com/u/2942913?s=48&v=4',
+        logo: 'https://source.boringavatars.com/ring',
     },
     {
         name: '小猪佩奇学英语',

@@ -22,11 +22,11 @@ function EnSidebar() {
             tooltip: '音标',
             icon: <span>👄</span>,
         },
-        {
-            link: '/english/listen',
-            tooltip: '听力',
-            icon: <span>👂</span>,
-        },
+        // {
+        //     link: '/english/listen',
+        //     tooltip: '听力',
+        //     icon: <span>👂</span>,
+        // },
         {
             link: '/english/peppa?vid=BV113411F7ME',
             tooltip: '小猪佩奇练口语',

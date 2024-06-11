@@ -1,5 +1,13 @@
 'use client'
-import { Button, Collapse, Input, message, Skeleton } from 'antd'
+import {
+    Button,
+    Collapse,
+    Input,
+    message,
+    Skeleton,
+    Switch,
+    Tooltip,
+} from 'antd'
 import {
     fetchEditTime,
     useBVideoLines,
@@ -16,6 +24,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 export default function PeppaLines() {
     const search = useSearchParams()
     const { data, isLoading } = useBVideoLines(search.get('vid'))
+    const showEdit = search.get('edit')
     const items = (data || []).map((item) => {
         return {
             key: item.en,
@@ -23,7 +32,7 @@ export default function PeppaLines() {
             children: (
                 <>
                     <DisplayView info={item} />
-                    <EditLine info={item} />
+                    {showEdit && <EditLine info={item} />}
                 </>
             ),
         }
@@ -33,7 +42,7 @@ export default function PeppaLines() {
     return (
         <div className="peppa-lines">
             <Skeleton active loading={isLoading}>
-                <Collapse items={items} activeKey={activeKey}></Collapse>
+                <Collapse items={items}></Collapse>
             </Skeleton>
         </div>
     )
@@ -48,12 +57,14 @@ function DisplayView({ info }: { info: VideoLineType }) {
     return (
         <div className={'line-display'}>
             <p>{info.en}</p>
-            <Button
-                type={'text'}
-                icon={<PlayCircleOutlined />}
-                size={'small'}
-                onClick={videoSeek}
-            ></Button>
+            <Tooltip title={info.time}>
+                <Button
+                    type={'text'}
+                    icon={<PlayCircleOutlined />}
+                    size={'small'}
+                    onClick={videoSeek}
+                ></Button>
+            </Tooltip>
         </div>
     )
 }
