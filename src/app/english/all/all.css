@@ -1,0 +1,9 @@
+.english-all{
+    display: flex;
+    justify-content: center;
+    gap:1em;
+    flex-wrap: wrap;
+    .peppa-wrapper,.phonetics-wrapper{
+        margin:0;
+    }
+}

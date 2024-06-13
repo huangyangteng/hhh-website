@@ -131,7 +131,7 @@ export function fetchPeppaVideos() {
         })
 }
 
-//usages  const {isLoading,data:list}=usePeppaVideos()
+//usages  const {isLoading,_data:list}=usePeppaVideos()
 export function usePeppaVideos() {
     return useQuery({
         queryKey: ['peppa'],
@@ -167,7 +167,7 @@ export function fetchBVideo(
         })
 }
 
-//usages  const {isLoading,data:src}=useBVideoLink
+//usages  const {isLoading,_data:src}=useBVideoLink
 export function useBVideoInfo(videoId: string) {
     return useQuery({
         queryKey: ['peppa', videoId],

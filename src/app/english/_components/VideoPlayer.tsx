@@ -1,6 +1,6 @@
 'use client'
 import { useAtomValue } from 'jotai'
-import { globalVolumeAtom } from '@/app/english/state/english'
+import { globalVolumeAtom } from '@/app/english/_state/english'
 
 interface VideoProps {
     src: string

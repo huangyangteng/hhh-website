@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useAtom, useAtomValue } from 'jotai'
-import { globalVolumeAtom, selectedSymbol } from '@/app/english/state/english'
-import { useVideoUrl } from '@/app/english/apis'
+import { globalVolumeAtom, selectedSymbol } from '@/app/english/_state/english'
+import { useVideoUrl } from '../../_apis'
 import { Spin } from 'antd'
 
 export default function PhoneticsVideo() {

@@ -1,7 +1,12 @@
-import { AxiosRequestConfig, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import {
+    AxiosRequestConfig,
+    InternalAxiosRequestConfig,
+    AxiosResponse,
+    AxiosError,
+} from 'axios'
 /**
  * 请求拦截
- * @param {*} config  {data,headers,method,url}
+ * @param {*} config  {_data,headers,method,url}
  * @returns
  */
 export function beforeRequest(config: InternalAxiosRequestConfig) {
@@ -9,9 +14,9 @@ export function beforeRequest(config: InternalAxiosRequestConfig) {
     // config.headers.xxx = 'xxx'
 
     // 转换数据类型
-    // const isFormData = config.data instanceof FormData
-    // if (!isFormData && config.data) {
-    //     config.data = qs(config.data)
+    // const isFormData = config._data instanceof FormData
+    // if (!isFormData && config._data) {
+    //     config._data = qs(config._data)
     // }
 
     // 处理特殊请求
@@ -22,12 +27,12 @@ export function beforeRequest(config: InternalAxiosRequestConfig) {
  * 响应拦截
  */
 export function beforeResponse(axiosRes: AxiosResponse<any>) {
-    let res = axiosRes.data //{code:'',data:''}
+    let res = axiosRes.data //{code:'',_data:''}
     // 如果是流，直接返回
     if (res instanceof Blob) {
         if (res.type === 'application/json') {
             // 报错
-            res.text().then(text => {
+            res.text().then((text) => {
                 const json = JSON.parse(text)
             })
             return false
@@ -44,7 +49,7 @@ export function beforeResponse(axiosRes: AxiosResponse<any>) {
             // 弹出报错信息
             return res
 
-            // return { data: res.data, success: false }
+            // return { _data: res._data, success: false }
         }
     } else {
         return res
@@ -53,9 +58,9 @@ export function beforeResponse(axiosRes: AxiosResponse<any>) {
 
 /**
  * 处理错误
- * @param {*} error:AxiosError {code:"ERR_BAD_RESPONSE",config:{url,data,headers,method},message:'',name:'',request:
+ * @param {*} error:AxiosError {code:"ERR_BAD_RESPONSE",config:{url,_data,headers,method},message:'',name:'',request:
 XMLHttpRequest,response:{}}
- * error.response.data 是后端返回的数据
+ * error.response._data 是后端返回的数据
  */
 export function handleError(error: AxiosError<any>) {
     const isSilent = error.config!.url!.includes('silent')
@@ -63,7 +68,7 @@ export function handleError(error: AxiosError<any>) {
     if (!isSilent) {
         console.log(url, data)
         // ElMessage({
-        //     message: `服务器端错误:${error.response.data.message}  url:${url},data:${data}`,
+        //     message: `服务器端错误:${error.response._data.message}  url:${url},_data:${_data}`,
         //     type: 'error',
         // })
     }

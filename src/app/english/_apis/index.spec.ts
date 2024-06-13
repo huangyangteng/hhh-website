@@ -6,7 +6,7 @@ import {
     getVideoUrl,
     getWordInfo,
     WordInfoType,
-} from '@/app/english/apis/index'
+} from '@/app/english/_apis/index'
 
 describe('English API Test', () => {
     describe('getVideoURL', () => {

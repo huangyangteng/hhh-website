@@ -1,5 +1,5 @@
 import './puppa.css'
-import VideoPlayer from '@/app/english/components/VideoPlayer'
+import VideoPlayer from '@/app/english/_components/VideoPlayer'
 import PeppaList from '@/app/english/peppa/_components/PeppaList'
 import PeppaVideo from '@/app/english/peppa/_components/PeppaVideo'
 import PeppaLines from '@/app/english/peppa/_components/PeppaLines'

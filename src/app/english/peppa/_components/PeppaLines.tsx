@@ -8,11 +8,7 @@ import {
     Switch,
     Tooltip,
 } from 'antd'
-import {
-    fetchEditTime,
-    useBVideoLines,
-    VideoLineType,
-} from '@/app/english/apis'
+import { fetchEditTime, useBVideoLines, VideoLineType } from '../../_apis'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import { ResCode } from '@/apis/type'

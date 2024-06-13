@@ -1,7 +1,7 @@
 'use client'
-import { useBVideoInfo } from '@/app/english/apis'
+import { useBVideoInfo } from '../../_apis'
 import { useSearchParams } from 'next/navigation'
-import VideoPlayer from '@/app/english/components/VideoPlayer'
+import VideoPlayer from '@/app/english/_components/VideoPlayer'
 import { Spin } from 'antd'
 
 export default function PeppaVideo() {

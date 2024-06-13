@@ -1,8 +1,8 @@
 'use client'
-import VideoPlayer from '@/app/english/components/VideoPlayer'
+import VideoPlayer from '@/app/english/_components/VideoPlayer'
 import { Radio, RadioChangeEvent, Skeleton } from 'antd'
 import { useState } from 'react'
-import { useVideoUrl } from '@/app/english/apis'
+import { useVideoUrl } from '../../_apis'
 import HSkeleton from '@/app/_components/HSkeleton'
 export default function PhoneticsLearn() {
     const options = [

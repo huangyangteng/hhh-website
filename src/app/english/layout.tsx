@@ -18,7 +18,12 @@ function EnSidebar() {
             line: <span className={'en-sidebar-divide'}></span>,
         },
         {
-            link: '/english',
+            link: '/english/',
+            tooltip: 'Home',
+            icon: <span>🏠</span>,
+        },
+        {
+            link: '/english/phonetics',
             tooltip: '音标',
             icon: <span>👄</span>,
         },

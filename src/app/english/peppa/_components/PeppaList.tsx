@@ -1,5 +1,5 @@
 'use client'
-import { usePeppaVideos } from '@/app/english/apis'
+import { usePeppaVideos } from '../../_apis'
 import { Pagination, Skeleton } from 'antd'
 import { useEffect, useState } from 'react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
