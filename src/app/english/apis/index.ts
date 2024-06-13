@@ -30,6 +30,15 @@ export function getVideoUrl(link) {
         })
 }
 
+export const useVideoUrl = (videoId) => {
+    const url = 'https://www.bilibili.com/video/' + videoId
+    const { isLoading, data } = useQuery({
+        queryKey: ['bVideo', videoId],
+        queryFn: () => getVideoUrl(url),
+        enabled: !!videoId,
+    })
+    return { isLoading, data }
+}
 interface SoundMark {
     text: string
     fsound: string

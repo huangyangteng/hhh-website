@@ -1,6 +1,7 @@
-:root{
-    --sidebar-top-offset:-2em;
+:root {
+    --sidebar-top-offset: -2em;
 }
+
 .en-sidebar {
     width: 68px;
     z-index: 3;
@@ -17,11 +18,12 @@
     }
 
     .en-sidebar-menus {
+        background: var(--bg-color-main);
         position: absolute;
         top: 50%;
         right: -8px;
         transform: translateY(-50%);
-        margin-top:var(--sidebar-top-offset);
+        margin-top: var(--sidebar-top-offset);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -66,7 +68,7 @@
             right: -26px;
             top: 50%;
             transform: translateY(-50%);
-            margin-top:var(--sidebar-top-offset);
+            margin-top: var(--sidebar-top-offset);
             cursor: pointer;
             transition: all .2s ease;
             opacity: 0;
@@ -154,3 +156,5 @@
         right: 0;
     }
 }
+
+
