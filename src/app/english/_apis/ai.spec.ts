@@ -9,7 +9,6 @@ describe('Ai API Test', () => {
         })
         it('should fetch word changes', async () => {
             const res = await fetchWordChanges('teach')
-            console.log('🐔🐔🐔', res)
             expect(Array.isArray(res) && res.length > 1).toBe(true)
         }, 6000)
     })

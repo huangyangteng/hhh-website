@@ -11,9 +11,7 @@ import { useAtomValue, useSetAtom } from 'jotai'
 import { splitPhoneticsSymbol } from '@/app/english/_utils/english'
 
 export default function QueryWord() {
-    const router = useRouter()
     const searchParams = useSearchParams()
-    const pathname = usePathname()
     const [searchWord, setSearchWord] = useState(searchParams.get('word') || '')
 
     const [word, setWord] = useState(searchParams.get('word') || '')
@@ -36,7 +34,6 @@ export default function QueryWord() {
     const fetchWord = (e) => {
         if (e.key === 'Enter') {
             setWord(searchWord)
-            router.replace(`${pathname}?word=${e.target.value}`)
         }
     }
 

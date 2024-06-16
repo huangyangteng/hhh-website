@@ -27,6 +27,11 @@ export default function PhoneticsPdf() {
 
     function onDocumentLoadSuccess({ numPages }) {
         setTotalPages(numPages)
+        if (!select) return
+        let no = pdfMap.get(select.text)
+        if (no) {
+            toPage(no - 4)
+        }
     }
 
     const next = () => {
