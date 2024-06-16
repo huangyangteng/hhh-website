@@ -85,10 +85,44 @@ export const useWord = (word) => {
     return { isLoading, data }
 }
 
-export function getWordEnEn(word: string) {
-    return http.request({
-        url: 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word,
+export function getWordEnEn(word: string): Promise<EnWord> {
+    return http
+        .request<EnWord[], EnWord[]>({
+            url: 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word,
+        })
+        .then((res) => {
+            return res[0]
+        })
+}
+interface EnWord {
+    word: string
+    phonetics: EnPhonetic[]
+    meanings: EnWordMeaning
+}
+interface EnPhonetic {
+    text: string
+    audio: string
+    sourceUrl: string
+}
+interface EnWordMeaning {
+    partOfSpeech: string
+    definitions: EnDefinition[]
+    synonyms: string[]
+    antonyms: string[]
+}
+interface EnDefinition {
+    definition: string
+    example?: string
+}
+export const useWordEn = (word) => {
+    const { isLoading, data } = useQuery({
+        queryKey: ['word-en', word],
+        queryFn: async () => {
+            return await getWordEnEn(word)
+        },
+        enabled: !!word,
     })
+    return { isLoading, data }
 }
 
 interface PeppaItemType {

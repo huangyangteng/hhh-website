@@ -16,8 +16,9 @@ export default function PeppaList() {
     useEffect(() => {
         if (!data) return
         let cur = data.pages[current - 1]
+        if (!cur) return
         router.push(
-            `${pathname}?vid=${cur.bvid}&page=${current}&edit=${search.get('edit')}`,
+            `${pathname}?vid=${cur.bvid}&page=${current}&edit=${search.get('edit') ? search.get('edit') : ''}`,
         )
     }, [data, current])
     return (

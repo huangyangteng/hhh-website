@@ -15,7 +15,6 @@ export default function PhoneticsLearn() {
     }
     const [select, setSelect] = useState(options[0].value)
     const { isLoading, data } = useVideoUrl(select)
-    console.log(isLoading, data)
     return (
         <div>
             <HSkeleton loading={isLoading} height={320}>
