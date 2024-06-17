@@ -34,7 +34,7 @@
         "**/*.ts",
         "**/*.tsx",
         ".next/types/**/*.ts",
-        "src/app/RecoilRootWrapper.js"
+        "src/app/RecoilRootWrapper.js",
     ],
     "exclude": [
         "node_modules"
