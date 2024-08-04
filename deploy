@@ -2,9 +2,9 @@
 
 const SERVER = new Map([
     [
-        '43',
+        '124',
         {
-            host: '43.136.216.240',
+            host: '124.223.48.149',
             runScript:
                 'sh ~/tmp/docker-build-server.sh',
             port: 22,
@@ -12,7 +12,6 @@ const SERVER = new Map([
             privateKey: require('fs').readFileSync('/Users/h/.ssh/id_rsa')
         }
     ],
-    ['42', { host: '10.1.69.42' }]
 ])
 const shell = require('shelljs')
 const Client = require('ssh2').Client
