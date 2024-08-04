@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 4446",
+    "start": "next start -p 80",
     "dev:dev": "env-cmd -f .env.development pnpm dev",
     "dev:prod": "env-cmd -f .env.production pnpm dev",
     "build:dev": "env-cmd -f .env.development pnpm build",
