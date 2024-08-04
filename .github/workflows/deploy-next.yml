@@ -1,0 +1,49 @@
+name: HHH WEBSITE
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+#      - name: Set up Docker Buildx
+#        uses: docker/setup-buildx-action@v2
+#
+#      - name: Build Docker image
+#        run: docker build   -t hhh -f Dockerfile.global  .
+#
+#      - name: Save Docker image to a tar file
+#        run: docker save hhh| gzip > hhh.tar.gz
+
+      #      - name: Copy Docker image to server
+      #        uses: appleboy/scp-action@v0.1.1
+      #        with:
+      #          host: ${{ secrets.SSH_HOST }}
+      #          username: ${{ secrets.SSH_USERNAME }}
+      #          key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #          source: hhh.tar.gz
+      #          target: /root/hhh.tar.gz
+
+      - name: Deploy to Server
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest # 第三方的 action
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          user: ${{ secrets.SERVER_USER }}
+          pass: ${{ secrets.SERVER_PASS }}
+
+          # 由于网络情况，很容易超时，设置为60s
+          connect_timeout: 60s
+
+          # 将工作目录下的文件全部拷贝到部署服务器的工作目录
+          scp: |
+            ./* => /root/hhh-website
+            # 完成拷贝后在部署服务器执行的命令：进入项目目录，安装生产依赖，并使用 pm2 管理
+          last_ssh: |
+            echo "run hhh-website" 
+            sh /root/hhh-website/deploy-github.sh
+  
