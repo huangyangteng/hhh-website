@@ -1,4 +1,5 @@
 #/bin/bash
+cd /root/hhh-website
 rm -rf .next
 pnpm install &&
 pnpm build:prod &&

@@ -1,4 +1,4 @@
-name: HHH WEBSITE
+name: HHH WEBSITE DOCKER
 
 on:
   push:
