@@ -11,14 +11,14 @@ WORKDIR $APP_PATH
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 # 使用apk命令安装 nodejs 和 yarn
-RUN apk add --no-cache --update nodejs=20.13.1-r0 yarn=1.22.22-r0
+RUN apk add --no-cache --update nodejs=20.15.1-r0 yarn=1.22.22-r0
 
 # 2. 基于基础镜像安装项目依赖
 FROM base AS install
 
 COPY package.json yarn.lock ./
 
-RUN yarn config set registry https://registry.npmmirror.com/ --global && yarn install --frozen-lockfile --production 
+RUN yarn config set registry https://registry.npmmirror.com/ --global && yarn install --frozen-lockfile --production
 
 # 3. 基于基础镜像进行最终构建
 FROM base
