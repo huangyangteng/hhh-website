@@ -1,25 +1,63 @@
 'use client'
-import { useRouter, useSearchParams, usePathname } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 
-import { useEffect, useRef, useState } from 'react'
-import { Input, InputRef } from 'antd'
-import { useWord, useWordEn } from '../../_apis'
+import { useEffect, useRef, useState, memo } from 'react'
+import { Input, InputRef, Divider } from 'antd'
+import { EnWordType, useWord, useWordEn, WordInfoType } from '../../_apis'
 
 import WordItemInfo from '@/app/english/phonetics/_components/WordItemInfo'
 import { splitSymbolAtom } from '@/app/english/_state/english'
-import { useAtomValue, useSetAtom } from 'jotai'
-import { splitPhoneticsSymbol } from '@/app/english/_utils/english'
+import { useSetAtom } from 'jotai'
+import { isWord, splitPhoneticsSymbol } from '@/app/english/_utils/english'
+import { readClipboard } from '@/utils'
 
 function HaiCiWord({ word }) {
     const { isLoading, data } = useWord(word)
+    useActiveSymbols(data)
     return <WordItemInfo info={data} isLoading={isLoading} />
 }
-
+const HaiciMemo = memo(HaiCiWord)
+const formatEn = (data: EnWordType): WordInfoType => {
+    if (!data) return
+    const [uk, us] = data.phonetics
+    return {
+        meaning: data.meanings.map((item) => {
+            return {
+                type: item.partOfSpeech,
+                list: item.definitions.map((item) => item.definition),
+            }
+        }),
+        soundmark: {
+            uk: {
+                text: 'uk' + uk.text,
+                sound: uk.audio,
+                fsound: uk.audio,
+            },
+            us: us
+                ? {
+                      text: 'us' + us.text,
+                      sound: us.audio,
+                      fsound: us.audio,
+                  }
+                : null,
+        },
+    }
+}
 function EnWord({ word }) {
     const { isLoading, data } = useWordEn(word)
-    console.log(isLoading, data)
-
-    return <div>word en</div>
+    const info = formatEn(data)
+    return <WordItemInfo info={info} isLoading={isLoading} />
+}
+const EnWordMemo = memo(EnWord)
+// 高亮音标
+function useActiveSymbols(data) {
+    const setSplitSymbol = useSetAtom(splitSymbolAtom)
+    useEffect(() => {
+        if (data && typeof data !== 'string') {
+            const text = data.soundmark.us.text.replace(/[英美\[\]]/g, '')
+            setSplitSymbol(splitPhoneticsSymbol(text))
+        }
+    }, [data])
 }
 
 export default function QueryWord() {
@@ -27,36 +65,30 @@ export default function QueryWord() {
     const [inputWord, setInputWord] = useState(searchParams.get('word') || '')
     const [submitWord, setSubmitWord] = useState(searchParams.get('word') || '')
 
-    // const { isLoading, data } = useWord(submitWord)
-    // const setSplitSymbol = useSetAtom(splitSymbolAtom)
-    //
-    // useEffect(() => {
-    //     if (inputWord == '') {
-    //         setSplitSymbol([])
-    //     }
-    // }, [inputWord])
-    //
-    // useEffect(() => {
-    //     if (data && typeof data !== 'string') {
-    //         const text = data.soundmark.us.text.replace(/[英美\[\]]/g, '')
-    //         setSplitSymbol(splitPhoneticsSymbol(text))
-    //     }
-    // }, [data])
-
-    const fetchWord = (e) => {
-        if (e.key === 'Enter') {
-            setSubmitWord(inputWord)
+    // 页面获得焦点时，从剪贴板中取单词
+    useEffect(() => {
+        window.onfocus = function () {
+            readClipboard().then((text) => {
+                if (isWord(text)) {
+                    setInputWord(text.toLowerCase())
+                    setSubmitWord(text.toLowerCase())
+                }
+            })
         }
-    }
+    }, [])
 
-    const handleSearch = (e) => {
-        setInputWord(e.target.value)
-    }
     const inputRef = useRef<InputRef>(null)
+    // 自动选中所有文本
     const onFocus = () => {
         inputRef.current!.focus({
             cursor: 'all',
         })
+    }
+    // 查询单词
+    const fetchWord = (e) => {
+        if (e.key === 'Enter') {
+            setSubmitWord(inputWord)
+        }
     }
 
     return (
@@ -65,12 +97,13 @@ export default function QueryWord() {
                 ref={inputRef}
                 value={inputWord}
                 placeholder="Type the word and press enter"
-                onChange={handleSearch}
+                onChange={(e) => setInputWord(e.target.value)}
                 onKeyUp={fetchWord}
                 onFocus={onFocus}
             />
-            <HaiCiWord word={submitWord} />
-            {/*<EnWord word={submitWord} />*/}
+            <EnWordMemo word={submitWord} />
+            <Divider />
+            <HaiciMemo word={submitWord} />
         </div>
     )
 }

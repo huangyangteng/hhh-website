@@ -41,16 +41,16 @@ export const useVideoUrl = (videoId) => {
 }
 interface SoundMark {
     text: string
-    fsound: string
-    sound: string
+    fsound?: string //女性发音
+    sound: string //男性发音
 }
 
 export interface WordInfoType {
-    level: string
-    soundmark: Record<string, SoundMark>
-    meaning: string[]
-    meaningTotal: string[]
-    examples: string[]
+    level?: string
+    soundmark: Record<'uk' | 'us', SoundMark> //音标
+    meaning: string[] | any[]
+    meaningTotal?: string[]
+    examples?: string[]
 }
 
 export function getWordInfo(word): Promise<WordInfoType | null | string> {
@@ -85,19 +85,19 @@ export const useWord = (word) => {
     return { isLoading, data }
 }
 
-export function getWordEnEn(word: string): Promise<EnWord> {
+export function getWordEnEn(word: string): Promise<EnWordType> {
     return http
-        .request<EnWord[], EnWord[]>({
+        .request<EnWordType[], EnWordType[]>({
             url: 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word,
         })
         .then((res) => {
             return res[0]
         })
 }
-interface EnWord {
+export interface EnWordType {
     word: string
     phonetics: EnPhonetic[]
-    meanings: EnWordMeaning
+    meanings: EnWordMeaning[]
 }
 interface EnPhonetic {
     text: string

@@ -16,3 +16,9 @@ export const splitPhoneticsSymbol = (str: string) => {
     }
     return ans
 }
+
+// is single word or not
+export function isWord(str: string) {
+    const regex = /^[A-Za-z]+$/
+    return regex.test(str)
+}
