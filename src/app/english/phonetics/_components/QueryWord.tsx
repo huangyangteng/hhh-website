@@ -28,11 +28,13 @@ const formatEn = (data: EnWordType): WordInfoType => {
             }
         }),
         soundmark: {
-            uk: {
-                text: 'uk' + uk.text,
-                sound: uk.audio,
-                fsound: uk.audio,
-            },
+            uk: uk
+                ? {
+                      text: 'uk' + uk.text,
+                      sound: uk.audio,
+                      fsound: uk.audio,
+                  }
+                : null,
             us: us
                 ? {
                       text: 'us' + us.text,
