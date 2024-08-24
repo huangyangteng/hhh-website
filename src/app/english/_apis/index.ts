@@ -25,7 +25,6 @@ export function getVideoUrl(link) {
             }
         })
         .catch((err) => {
-            console.log('🐔🐔🐔getVideoUrl error', err)
             return null
         })
 }
@@ -69,7 +68,6 @@ export function getWordInfo(word): Promise<WordInfoType | null | string> {
             }
         })
         .catch((err) => {
-            console.log('🐔🐔🐔getWordInfo error', err)
             return null
         })
 }
@@ -160,7 +158,6 @@ export function fetchPeppaVideos() {
             }
         })
         .catch((err) => {
-            console.log('fetchPeppaVideos error', err)
             return { title: 'error', pages: [] } as PeppaVideosRes
         })
 }
@@ -196,7 +193,6 @@ export function fetchBVideo(
             }
         })
         .catch((err) => {
-            console.log('parseBVideo error', err)
             return null
         })
 }
@@ -234,7 +230,6 @@ export function fetchBVideoLines(videoId: string): Promise<VideoLineType[]> {
             }
         })
         .catch((err) => {
-            console.log('fetchBVideoLines Error:', err)
             return null
         })
 }

@@ -1,6 +1,7 @@
 import http from '@/apis/http'
 import { BaseResType, ResCode } from '@/apis/type'
 import { useQuery } from '@tanstack/react-query'
+import { getWordEnEn } from '@/app/english/_apis/index'
 
 /** play words
  * todo:
@@ -55,7 +56,6 @@ export function fetchOpenAi(content: string) {
             return res.data.choices[0].message.content
         })
         .catch((error) => {
-            console.log('fetchOpenAi error', error)
             return null
         })
 }
@@ -75,7 +75,6 @@ export function fetchKimiAi(content: string) {
             return res.data.choices[0].message.content
         })
         .catch((error) => {
-            console.log('fetchOpenAi error', error)
             return null
         })
 }
@@ -91,14 +90,45 @@ Output:
 `
 }
 
+const phoneticsPrompt = (input: string) => {
+    return `
+Output the meaning and phonetic symbols of a word.
+Input:quote
+Output: 
+{
+    meaning:['v.引述;报价','n.引用'],
+    phonetic:'/kwəʊt/'
+}
+Input:${input}
+Output:
+`
+}
+
 export function fetchWordChanges(word) {
-    console.log(wordChangesPrompt(word))
     return fetchKimiAi(wordChangesPrompt(word))
         .then((res) => {
             return eval('(' + res + ')')
         })
         .catch((error) => {
-            console.log('catch error', error)
             return []
         })
+}
+
+export async function fetchWordPhonetics(word) {
+    try {
+        const res = await fetchKimiAi(phoneticsPrompt(word))
+        return eval('(' + res + ')')
+    } catch (e) {
+        return null
+    }
+}
+export const useAiWord = (word) => {
+    const { isLoading, data } = useQuery({
+        queryKey: ['ai-word-en', word],
+        queryFn: async () => {
+            return await fetchWordPhonetics(word)
+        },
+        enabled: !!word,
+    })
+    return { isLoading, data }
 }

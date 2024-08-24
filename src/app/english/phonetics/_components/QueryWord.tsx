@@ -10,6 +10,7 @@ import { splitSymbolAtom } from '@/app/english/_state/english'
 import { useSetAtom } from 'jotai'
 import { isWord, splitPhoneticsSymbol } from '@/app/english/_utils/english'
 import { readClipboard } from '@/utils'
+import { useAiWord } from '@/app/english/_apis/ai'
 
 function HaiCiWord({ word }) {
     const { isLoading, data } = useHaiCiWord(word)
@@ -54,6 +55,24 @@ function EnWord({ word }) {
 }
 const EnWordMemo = memo(EnWord)
 
+function formatAiWord(data) {
+    if (!data) return 'ai-word:word not found'
+    return {
+        meaning: data.meaning,
+        soundmark: {
+            uk: {
+                text: data.phonetic,
+            },
+        },
+    } as WordInfoType
+}
+
+function AiWord({ word }) {
+    const { isLoading, data } = useAiWord(word)
+    const info = formatAiWord(data)
+    return <WordItemInfo info={info} isLoading={isLoading} />
+}
+const AiWordMemo = memo(AiWord)
 // 高亮音标
 function useActiveSymbols(data) {
     const setSplitSymbol = useSetAtom(splitSymbolAtom)
@@ -109,6 +128,8 @@ export default function QueryWord() {
             <HaiciMemo word={submitWord} />
             <Divider />
             <EnWordMemo word={submitWord} />
+            <Divider />
+            <AiWordMemo word={submitWord} />
         </div>
     )
 }

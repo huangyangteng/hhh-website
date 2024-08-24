@@ -31,7 +31,6 @@ function SoundItem({ item }) {
         audio.load()
         audio.play()
     }
-    console.log(item.text, typeof item.text)
     return (
         <div className="word-sound-item">
             <b>{item.text}</b>
@@ -55,14 +54,6 @@ export default function WordItemInfo({
     style?: Record<string, any>
     isLoading: boolean
 }) {
-    const globalVolume = useAtomValue(globalVolumeAtom)
-
-    const playSound = (src) => {
-        let audio = new Audio(src)
-        audio.volume = globalVolume
-        audio.load()
-        audio.play()
-    }
     if (isLoading)
         return (
             <div style={style}>
