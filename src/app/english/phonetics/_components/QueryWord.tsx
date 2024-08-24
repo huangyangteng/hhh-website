@@ -24,7 +24,9 @@ const formatEn = (data: EnWordType): WordInfoType => {
         meaning: data.meanings.map((item) => {
             return {
                 type: item.partOfSpeech,
-                list: item.definitions.map((item) => item.definition),
+                list: item.definitions
+                    .map((item) => item.definition)
+                    .slice(0, 1),
             }
         }),
         soundmark: {
@@ -103,9 +105,9 @@ export default function QueryWord() {
                 onKeyUp={fetchWord}
                 onFocus={onFocus}
             />
-            <EnWordMemo word={submitWord} />
-            <Divider />
             <HaiciMemo word={submitWord} />
+            <Divider />
+            <EnWordMemo word={submitWord} />
         </div>
     )
 }
