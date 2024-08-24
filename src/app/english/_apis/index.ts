@@ -65,7 +65,7 @@ export function getWordInfo(word): Promise<WordInfoType | null | string> {
             if (res.code === ResCode.Success) {
                 return res.data
             } else {
-                return 'word not found '
+                return 'haici:word not found '
             }
         })
         .catch((err) => {
@@ -74,7 +74,7 @@ export function getWordInfo(word): Promise<WordInfoType | null | string> {
         })
 }
 
-export const useWord = (word) => {
+export const useHaiCiWord = (word) => {
     const { isLoading, data } = useQuery({
         queryKey: ['word', word],
         queryFn: async () => {

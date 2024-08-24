@@ -3,7 +3,7 @@ import { useSearchParams } from 'next/navigation'
 
 import { useEffect, useRef, useState, memo } from 'react'
 import { Input, InputRef, Divider } from 'antd'
-import { EnWordType, useWord, useWordEn, WordInfoType } from '../../_apis'
+import { EnWordType, useHaiCiWord, useWordEn, WordInfoType } from '../../_apis'
 
 import WordItemInfo from '@/app/english/phonetics/_components/WordItemInfo'
 import { splitSymbolAtom } from '@/app/english/_state/english'
@@ -12,13 +12,13 @@ import { isWord, splitPhoneticsSymbol } from '@/app/english/_utils/english'
 import { readClipboard } from '@/utils'
 
 function HaiCiWord({ word }) {
-    const { isLoading, data } = useWord(word)
+    const { isLoading, data } = useHaiCiWord(word)
     useActiveSymbols(data)
     return <WordItemInfo info={data} isLoading={isLoading} />
 }
 const HaiciMemo = memo(HaiCiWord)
-const formatEn = (data: EnWordType): WordInfoType => {
-    if (!data) return
+const formatEn = (data: EnWordType): WordInfoType | string => {
+    if (!data) return 'en-en:word not found'
     const [uk, us] = data.phonetics
     return {
         meaning: data.meanings.map((item) => {
@@ -32,14 +32,14 @@ const formatEn = (data: EnWordType): WordInfoType => {
         soundmark: {
             uk: uk
                 ? {
-                      text: 'uk' + uk.text,
+                      text: uk.text ? 'uk:' + uk.text : 'uk:empty😭',
                       sound: uk.audio,
                       fsound: uk.audio,
                   }
                 : null,
             us: us
                 ? {
-                      text: 'us' + us.text,
+                      text: us.text ? 'us:' + us.text : 'us:empty😭',
                       sound: us.audio,
                       fsound: us.audio,
                   }
@@ -53,6 +53,7 @@ function EnWord({ word }) {
     return <WordItemInfo info={info} isLoading={isLoading} />
 }
 const EnWordMemo = memo(EnWord)
+
 // 高亮音标
 function useActiveSymbols(data) {
     const setSplitSymbol = useSetAtom(splitSymbolAtom)

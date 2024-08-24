@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai'
 import { selectedSymbol } from '@/app/english/_state/english'
 import { words } from '@/app/english/_data/big-data/word'
 import { useEffect, useState } from 'react'
-import { useWord, WordInfoType } from '../../_apis'
+import { useHaiCiWord, WordInfoType } from '../../_apis'
 import WordItemInfo from '@/app/english/phonetics/_components/WordItemInfo'
 import { Virtuoso } from 'react-virtuoso'
 
@@ -22,7 +22,7 @@ export default function WordList() {
 
 export function WordItem({ item }) {
     const [word, setWord] = useState('')
-    const { isLoading, data } = useWord(word)
+    const { isLoading, data } = useHaiCiWord(word)
     const translateWord = () => {
         setWord(item.w)
     }

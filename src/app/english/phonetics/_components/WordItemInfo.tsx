@@ -1,8 +1,50 @@
 import { WordInfoType } from '../../_apis'
 import { useAtomValue } from 'jotai'
 import { globalVolumeAtom } from '@/app/english/_state/english'
-import { Skeleton } from 'antd'
-import { isObject } from '@/utils'
+import { Skeleton, Tooltip } from 'antd'
+import { copyToBoard, isObject } from '@/utils'
+import { useState } from 'react'
+
+function CopyIcon({ text }) {
+    const [isCopy, setIsCopy] = useState(false)
+    const copyText = () => {
+        copyToBoard(
+            text
+                .replace(/[英美]/g, '')
+                .replace('uk', '')
+                .replace('us', ''),
+        )
+        setIsCopy(true)
+    }
+    return (
+        <Tooltip title={isCopy ? 'copied' : 'copy'}>
+            <span onClick={copyText}>{isCopy ? '✅' : '📋'}</span>
+        </Tooltip>
+    )
+}
+
+function SoundItem({ item }) {
+    const globalVolume = useAtomValue(globalVolumeAtom)
+    const playSound = (src) => {
+        let audio = new Audio(src)
+        audio.volume = globalVolume
+        audio.load()
+        audio.play()
+    }
+    console.log(item.text, typeof item.text)
+    return (
+        <div className="word-sound-item">
+            <b>{item.text}</b>
+            <CopyIcon text={item.text} />
+            {item.sound && (
+                <span onClick={() => playSound(item.sound)}>👨🏼</span>
+            )}
+            {item.fsound && (
+                <span onClick={() => playSound(item.fsound)}>👩🏻‍🦳</span>
+            )}
+        </div>
+    )
+}
 
 export default function WordItemInfo({
     info,
@@ -62,40 +104,8 @@ export default function WordItemInfo({
                             </li>
                         ))}
                 </div>
-                {soundMark.uk && (
-                    <div className="word-sound-item">
-                        <b>{soundMark.uk.text}</b>
-                        {soundMark.uk.sound && (
-                            <span onClick={() => playSound(soundMark.uk.sound)}>
-                                👨🏼
-                            </span>
-                        )}
-                        {soundMark.uk.fsound && (
-                            <span
-                                onClick={() => playSound(soundMark.uk.fsound)}
-                            >
-                                👩🏻‍🦳
-                            </span>
-                        )}
-                    </div>
-                )}
-                {soundMark.us && (
-                    <div className="word-sound-item">
-                        <b>{soundMark.us.text}</b>
-                        {soundMark.us.sound && (
-                            <span onClick={() => playSound(soundMark.us.sound)}>
-                                👨🏼
-                            </span>
-                        )}
-                        {soundMark.us.fsound && (
-                            <span
-                                onClick={() => playSound(soundMark.us.fsound)}
-                            >
-                                👩🏻‍🦳
-                            </span>
-                        )}
-                    </div>
-                )}
+                {soundMark.uk && <SoundItem item={soundMark.uk} />}
+                {soundMark.us && <SoundItem item={soundMark.us} />}
             </div>
         </div>
     )
