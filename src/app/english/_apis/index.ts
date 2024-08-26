@@ -91,6 +91,9 @@ export function getWordEnEn(word: string): Promise<EnWordType> {
         .then((res) => {
             return res[0]
         })
+        .catch((err) => {
+            return null
+        })
 }
 export interface EnWordType {
     word: string

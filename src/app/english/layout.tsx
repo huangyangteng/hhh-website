@@ -22,11 +22,11 @@ function EnSidebar() {
             tooltip: 'Home',
             icon: <span>🏠</span>,
         },
-        {
-            link: '/english/phonetics',
-            tooltip: '音标',
-            icon: <span>👄</span>,
-        },
+        // {
+        //     link: '/english/phonetics',
+        //     tooltip: '音标',
+        //     icon: <span>👄</span>,
+        // },
         // {
         //     link: '/english/listen',
         //     tooltip: '听力',
@@ -37,7 +37,23 @@ function EnSidebar() {
             tooltip: '小猪佩奇练口语',
             icon: <span>🐽</span>,
         },
+        {
+            link: 'https://translate.google.as/?sl=en&tl=zh-CN&op=translate',
+            tooltip: '谷歌翻译纠音',
+            icon: <span>🦜</span>,
+            type: 'open',
+        },
     ]
+    const openNewPage = (e, item) => {
+        if (item.type === 'open') {
+            e.preventDefault()
+            window.open(
+                item.link,
+                'google',
+                'top=100,left=100,width=400,height=420',
+            )
+        }
+    }
     return (
         <div className={`en-sidebar ${expand ? '' : 'fold'}`}>
             <div className="en-sidebar-menus">
@@ -48,7 +64,12 @@ function EnSidebar() {
                             title={item.tooltip}
                             placement={'right'}
                         >
-                            <Link href={item.link}>{item.icon}</Link>
+                            <Link
+                                onClick={(e) => openNewPage(e, item)}
+                                href={item.link}
+                            >
+                                {item.icon}
+                            </Link>
                         </Tooltip>
                         {!!item.line && item.line}
                     </li>

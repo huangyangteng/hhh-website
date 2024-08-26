@@ -51,6 +51,7 @@ const formatEn = (data: EnWordType): WordInfoType | string => {
 function EnWord({ word }) {
     const { isLoading, data } = useWordEn(word)
     const info = formatEn(data)
+    if (!word) return null
     return <WordItemInfo info={info} isLoading={isLoading} />
 }
 const EnWordMemo = memo(EnWord)
@@ -70,6 +71,7 @@ function formatAiWord(data) {
 function AiWord({ word }) {
     const { isLoading, data } = useAiWord(word)
     const info = formatAiWord(data)
+    if (!word) return null
     return <WordItemInfo info={info} isLoading={isLoading} />
 }
 const AiWordMemo = memo(AiWord)
