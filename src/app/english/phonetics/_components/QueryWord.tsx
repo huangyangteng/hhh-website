@@ -62,7 +62,7 @@ function formatAiWord(data) {
         meaning: data.meaning,
         soundmark: {
             uk: {
-                text: data.phonetic,
+                text: String(data.phonetic),
             },
         },
     } as WordInfoType
@@ -71,6 +71,7 @@ function formatAiWord(data) {
 function AiWord({ word }) {
     const { isLoading, data } = useAiWord(word)
     const info = formatAiWord(data)
+    console.log(info)
     if (!word) return null
     return <WordItemInfo info={info} isLoading={isLoading} />
 }
