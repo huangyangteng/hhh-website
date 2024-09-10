@@ -7,6 +7,7 @@ import { useVideoUrl } from '../../_apis'
 import { Spin } from 'antd'
 
 export default function PhoneticsVideo() {
+    console.log('🐔🐔🐔render render')
     const { isLoading, data: videoUrl } = useVideoUrl('BV1sp4y1z74P')
 
     const videoDom = useRef<HTMLVideoElement>(null)
