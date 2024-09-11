@@ -8,11 +8,12 @@ const weekMap = {
     3: 'Wed',
     4: 'Thu',
     5: 'Fri',
-    6: 'Sat'
+    6: 'Sat',
 }
 export const generateDates = (year) => {
     const holidays = new Holidays('CN')
     const today = dayjs().format('YYYY-MM-DD')
+    console.log('today', today)
     const getMonthDays = (month) => {
         const firstDay = dayjs(`${year}-${month}-01`)
         const daysInMonth = firstDay.daysInMonth()
@@ -28,13 +29,13 @@ export const generateDates = (year) => {
                 timePassed: d.isBefore(today),
                 holiday: holidays.isHoliday(d.toDate()),
                 remark: '',
-                lunar: Lunar.solarToLunar(d.toDate(), 'd')
+                lunar: Lunar.solarToLunar(d.toDate(), 'd'),
             }
         })
     }
 
     const monthDays = Array.from({ length: 12 }, (_, i) => i + 1).map(
-        getMonthDays
+        getMonthDays,
     )
 
     return monthDays
