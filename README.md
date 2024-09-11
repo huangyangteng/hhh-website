@@ -6,21 +6,23 @@ I built this site to help myself learn efficiently and realise some of my ideas.
 
 
 ## Install
+node version 18.20.2
+pnpm 9.1.0
 
 ```shell
-yarn
+pnpm install
 ```
 
-## Usage
+## Run
 
 ```shell
-yarn dev
+pnpm dev
 ```
 
 ## Test
 
 ```shell
-yarn test
+pnpm test
 ```
 
 
@@ -28,10 +30,8 @@ yarn test
 ## Build
 
 ```shell
-# build docker image
-sh docker-build-local.sh 
-# or
-yarn build:docker
+
+release by github actions
 
 ```
 
