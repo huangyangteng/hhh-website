@@ -1,11 +1,11 @@
 'use client'
 import { ReactSortable } from 'react-sortablejs'
-import { useRightColumnStore } from '@/app/english/test/_components/drag-state'
+import { useColumnStore } from '@/app/english/test/_components/drag-state'
 import React from 'react'
-import DragBox from './DragBox'
+import DragBox from '@/app/english/test/_components/DragBox'
 
-export default function ColumnRight() {
-    const { list, setList } = useRightColumnStore()
+export default function DragList() {
+    const { list, setList } = useColumnStore()
     return (
         <ReactSortable
             group={'en'}

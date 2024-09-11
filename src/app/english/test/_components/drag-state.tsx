@@ -13,21 +13,11 @@ interface DragStore {
     list: DragItemType[]
     setList: (list: any[]) => void
 }
-export const useLeftColumnStore = create<DragStore>((set) => ({
+export const useColumnStore = create<DragStore>((set) => ({
     list: [
-        // {
-        //     id: 1,
-        //     component: <PhoneticSymbol />,
-        // },
         { id: 2, component: <QueryWord /> },
         { id: 3, component: <PhoneticsVideo /> },
         { id: 4, component: <PhoneticsPdf /> },
-    ],
-    setList: (list) => set({ list }),
-}))
-
-export const useRightColumnStore = create<DragStore>((set) => ({
-    list: [
         { id: 5, component: <h1>5</h1> },
         { id: 6, component: <h1>6</h1> },
         { id: 7, component: <h1>7</h1> },

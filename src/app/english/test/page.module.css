@@ -1,22 +1,22 @@
 .wrapper {
-    gap: 1em;
-    /*background: #000;*/
-    padding-left: 80px;
-    display: flex;
     max-width: 1440px;
     width: 100%;
     margin: 0 auto;
-    justify-content: center;
-
 }
 
 .wrapper > div {
-    width: 100%;
-    max-width: 640px;
+    column-count: 2;
+    column-gap: 0;
+
 }
 .dragBox{
+    break-inside: avoid;
+    box-sizing: border-box;
+
     margin-bottom: 16px;
     border:1px solid yellow;
     padding:0.5em;
     border-radius: 0.2em;
 }
+
+
