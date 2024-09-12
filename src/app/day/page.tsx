@@ -3,6 +3,8 @@ import DayDetail from './components/DayDetail'
 import styles from './styles.module.scss'
 import { DayInfo } from './types'
 import dayjs from 'dayjs'
+//退出  完整路由缓存（Full Route Cache）
+export const revalidate = 0
 const EmptyDays = ({ len }) => {
     return Array.from({ length: len }).map((_, i) => (
         <div className={styles.emptyDay} key={i}></div>
