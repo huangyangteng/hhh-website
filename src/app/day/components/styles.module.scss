@@ -1,11 +1,25 @@
 .detail {
-    font-size: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    height: 100%;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 100%;
 }
+
 .textarea {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.progressWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
 }
