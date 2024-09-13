@@ -35,6 +35,7 @@ export const useVideoUrl = (videoId) => {
         queryKey: ['bVideo', videoId],
         queryFn: () => getVideoUrl(url),
         enabled: !!videoId,
+        refetchOnWindowFocus: true,
     })
     return { isLoading, data }
 }
