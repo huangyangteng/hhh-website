@@ -3,6 +3,7 @@ import { GEEK_TIME_ARTICLES_LINK, NOTION_LINK } from '@/app/home/data'
 
 export default function Header() {
     let list = [
+        { path: '/day', name: 'Calendar' },
         { path: '/english', name: 'English' },
         { path: GEEK_TIME_ARTICLES_LINK, name: 'Programming' },
         { path: NOTION_LINK, name: 'Blog' },

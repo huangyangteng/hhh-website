@@ -1,13 +1,5 @@
 import { HolidaysTypes } from 'date-holidays'
 
-interface Holiday {
-    name: string
-    date: string
-    start: string
-    end: string
-    type: string
-}
-
 /**
  * {
  *     date: '2024-01-01 00:00:00',
@@ -41,3 +33,10 @@ export interface DayInfo {
  *     lunar: '廿一'
  *   }
  */
+
+export interface MonthInfo {
+    days: DayInfo[]
+    month: number
+    workDays: number
+    totalDays: number
+}

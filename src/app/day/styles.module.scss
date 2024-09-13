@@ -1,63 +1,85 @@
 .page {
-    background-color: var(--bg-color-main);
-    text-align: center;
-    color: rgba(255, 255, 255, 0.8);
-    position: relative;
+  background-color: var(--bg-color-main);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
 }
+
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 50px;
-    height: 78px;
-    position: sticky;
-    top:0;
-    background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  height: 78px;
+  position: sticky;
+  top: 0;
+  background: #000;
 }
+
+.headLine {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+
+  > a {
+    color: var(--font-color)
+  }
+  >span{
+    font-size: 14px;
+  }
+}
+
 .calender {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 1em;
 }
+
 .month {
-    display: flex;
-    gap: 2px;
+  display: flex;
+  gap: 2px;
 }
+
 .head {
-    display: flex;
-    padding-left: 50px;
-    gap: 2px;
-    div {
-        width: 50px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
-.title {
-    min-width: 30px;
+  display: flex;
+  padding-left: 50px;
+  gap: 2px;
+
+  div {
+    width: 50px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
 }
+
+.title {
+  min-width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .day {
-    padding: 2px;
-    background-color: var(--bg-color-secondary);
-    min-width: 50px;
-    height: 100px;
-    border-radius: 4px;
-    flex: 1;
+  padding: 2px;
+  background-color: var(--bg-color-secondary);
+  min-width: 50px;
+  height: 100px;
+  border-radius: 4px;
+  flex: 1;
 }
-.day.holiday{
-    background-color: #16361b;
+
+.day.holiday {
+  background-color: #16361b;
 }
+
 .emptyDay {
-    background-color: transparent;
-    flex: 1;
-    padding: 2px;
-    min-width: 50px;
-    height: 100px;
-    border-radius: 4px;
+  background-color: transparent;
+  flex: 1;
+  padding: 2px;
+  min-width: 50px;
+  height: 100px;
+  border-radius: 4px;
 }

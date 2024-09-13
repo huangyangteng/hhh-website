@@ -1,7 +1,7 @@
 import Holidays from 'date-holidays'
 import dayjs from 'dayjs'
 import Lunar from 'chinese-lunar'
-import { DayInfo } from '@/app/day/types'
+import { DayInfo, MonthInfo } from '@/app/day/types'
 
 const weekMap = {
     0: 'Sun',
@@ -13,14 +13,14 @@ const weekMap = {
     6: 'Sat',
 }
 
-export const generateDates = (year: number): DayInfo[][] => {
+export const generateDates = (year: number): MonthInfo[] => {
     const holidays = new Holidays('CN')
     const today = dayjs().format('YYYY-MM-DD')
-    const getMonthDays = (month: number): DayInfo[] => {
+    const getMonthDays = (month: number): MonthInfo => {
         const firstDay = dayjs(`${year}-${month}-01`)
         const daysInMonth = firstDay.daysInMonth()
 
-        return Array.from({ length: daysInMonth }, (_, i) => {
+        const days = Array.from({ length: daysInMonth }, (_, i) => {
             const d = dayjs(`${year}-${month}-${i + 1}`)
             const date = d.format('YYYY-MM-DD')
             return {
@@ -35,6 +35,12 @@ export const generateDates = (year: number): DayInfo[][] => {
                 isWorkDay: isWorkDay2024(date),
             }
         })
+        return {
+            days,
+            month,
+            totalDays: days.length,
+            workDays: days.filter((day) => day.isWorkDay).length,
+        }
     }
 
     return Array.from({ length: 12 }, (_, i) => i + 1).map(getMonthDays)
