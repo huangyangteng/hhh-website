@@ -1,9 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import {
-    fetchKimiAi,
-    fetchOpenAi,
-    fetchWordChanges,
-} from '@/app/english/_apis/ai'
+import { fetchKimiAi } from '@/apis/ai'
 
 describe('Ai API Test', () => {
     // describe('fetch openAi api', () => {

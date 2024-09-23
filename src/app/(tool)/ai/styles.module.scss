@@ -1,0 +1,14 @@
+.wrapper{
+  width: 960px;
+  margin:0 auto;
+  padding-top:20px;
+}
+.outputBox{
+  padding:1em;
+  display: flex;
+  flex-direction: column;
+  gap:0.5em;
+}
+.outputItem{
+  cursor: copy;
+}
