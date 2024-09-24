@@ -39,7 +39,7 @@ export default function Day() {
                             <MonthDetail month={month} />
                             {month.days.map((day, i) => (
                                 <div
-                                    className={`${styles.day} ${!day.isWorkDay ? styles.holiday : ''}`}
+                                    className={`${styles.day} ${!day.isWorkDay && !day.timePassed ? styles.holiday : ''}`}
                                     key={day.date}
                                 >
                                     <DayDetail

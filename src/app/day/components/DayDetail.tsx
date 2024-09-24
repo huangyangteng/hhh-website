@@ -52,7 +52,7 @@ const RenderView = ({ info, onDoubleClick }: DayDetailProp) => {
             onDoubleClick={onDoubleClick}
             className={styles.detail}
             style={{
-                opacity: info.timePassed ? 0.4 : 1,
+                opacity: info.timePassed ? 0.1 : 1,
             }}
         >
             <span
