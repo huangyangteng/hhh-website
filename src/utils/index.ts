@@ -43,3 +43,8 @@ export function copyToBoard(text: string) {
         document.body.removeChild(textarea)
     }
 }
+//ts封装
+export function scrollTo(selector: string) {
+    const section = document.querySelector(selector)
+    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}

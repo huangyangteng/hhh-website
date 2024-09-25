@@ -7,7 +7,8 @@ todo:
 1. 假期高亮显示  需要判断是否是工作日
 2. 每周为一个group
 3. 一个按钮，用于添加工时  点击一下+0.5
-
+4. 样式调整：底部增加波浪状，样式参考:https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/
+5. 样式，今天加一个慢慢变暗的的动画
 
 ## 工时计算  存store
 数据结构
