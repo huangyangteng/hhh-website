@@ -37,6 +37,7 @@
     "antd": "^5.12.2",
     "autoprefixer": "^10.4.14",
     "axios": "^1.7.2",
+    "boring-avatars": "^1.11.2",
     "chinese-lunar": "^0.1.4",
     "commitizen": "^4.3.0",
     "date-holidays": "^3.23.3",
