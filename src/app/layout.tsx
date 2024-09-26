@@ -1,27 +1,18 @@
+import './theme.css'
 import './globals.css'
-import RecoilRootWrapper from './RecoilRootWrapper.js'
+import { ReactNode } from 'react'
 export const metadata = {
     title: 'hhh-website',
-    description: 'hhh website'
+    description: 'blog',
 }
-import StyledComponentsRegistry from '../lib/AntdRegistry';
-import ReactQueryRegistry from '@/lib/ReactQueryRegistry';
 
-export default function RootLayout({
-    children
-}: {
-    children: React.ReactNode
-}) {
+import { Providers } from '@/lib/providers/Providers'
+
+export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en" suppressHydrationWarning={true}>
             <body suppressHydrationWarning={true}>
-                <RecoilRootWrapper>
-                    <StyledComponentsRegistry>
-                        <ReactQueryRegistry>
-                        {children}
-                        </ReactQueryRegistry>
-                    </StyledComponentsRegistry>
-                </RecoilRootWrapper>
+                <Providers>{children}</Providers>
             </body>
         </html>
     )

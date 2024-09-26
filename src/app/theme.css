@@ -1,0 +1,128 @@
+:root {
+    /* 主色序列 Brand */
+    --color-brand-1: #2354e6;
+    --color-brand-2: #1b41b2;
+    --color-brand-3: #2354e6;
+
+    /* 功能色 Functional */
+    --color-funct-1: #17e5a1;
+    --color-funct-2: #03aa65;
+    --color-funct-3: #e73828;
+    --color-funct-4: #f7931a;
+    --color-funct-5: #b523e6;
+    --color-funct-6: #198cff;
+    --color-funct-7: #f23030;
+    --color-funct-8: #b22367;
+    --color-funct-9: #00c7a6;
+    --color-funct-10: #fe5533;
+
+    /* 卡片 Card */
+    --color-card-1: #f8f9fb;
+    --color-card-2: #ffffff;
+    --color-card-3: #ffffff;
+    --color-card-4: #ffffff;
+    --color-card-5: #fdfdfe;
+    --color-card-6: #f5f5f7;
+    --color-card-7: #f5f5f7;
+    /* 背景 Bg */
+    --color-bg-1: #ffffff;
+    --color-bg-2: #fcfcfc;
+    --color-bg-3: #f8f9fb;
+    --color-bg-4: rgba(0, 0, 0, 0.65);
+    --color-bg-5: #f5f5f7;
+    /* 文字 Text */
+    --color-text-1: #262933;
+    --color-text-2: #2e384d;
+    --color-text-3: #8e949e;
+    --color-text-4: #d0d4db;
+    --color-text-5: #2354e6;
+    --color-text-6: #ffffff;
+    --color-text-7: #b5b7bc;
+    --color-text-8: #ffffff;
+    --color-text-9: #2354e6;
+
+    /* 蓝色色阶 */
+    --color-blue-11: #182253;
+    --color-blue-10: #203588;
+    --color-blue-9: #2139ac;
+    --color-blue-8: #2145d4;
+    --color-blue-7: #2354e6;
+    --color-blue-6: #3f78f2;
+    --color-blue-5: #639cf7;
+    --color-blue-4: #95bffb;
+    --color-blue-3: #c0d7fd;
+    --color-blue-2: #dce8fd;
+    --color-blue-1: #eff5ff;
+}
+
+[data-theme='dark'] {
+    /* 主色序列 Brand */
+    --color-brand-1: #2174ff;
+    --color-brand-2: #095edc;
+    --color-brand-3: #61a0ff;
+    /* 功能色 Functional */
+    --color-funct-1: #17e5a1;
+    --color-funct-2: #03aa65;
+    --color-funct-3: #e73828;
+    --color-funct-4: #f7931a;
+    --color-funct-5: #b523e6;
+    --color-funct-6: #198cff;
+    --color-funct-7: #f23030;
+    --color-funct-8: #b22367;
+    --color-funct-9: #00c7a6;
+    --color-funct-10: #fe5533;
+
+    /* 分割线 Divider */
+    --color-divider-1: #4f4f4f;
+    --color-divider-2: #2e2e2e;
+    --color-divider-3: #2e2e2e;
+    --color-divider-4: #4f4f4f;
+    --color-divider-5: #424242;
+    /* 中性色 Neutral */
+    --color-neutral-1: #353638;
+    --color-neutral-2: #262626;
+    --color-neutral-3: #2e2e2e;
+    --color-neutral-4: #8c8c8c;
+    --color-neutral-5: #262626;
+    --color-neutral-6: #262626;
+    /* 卡片 Card */
+    --color-card-1: #1f1f1f;
+    --color-card-2: #141414;
+    --color-card-3: #1f1f1f;
+    --color-card-4: #1a1a1a;
+    --color-card-5: #2e2e2e;
+    --color-card-6: #262626;
+    --color-card-7: #2e2e2e;
+
+    /* 背景 Bg */
+    --color-bg-1: #141414;
+    --color-bg-2: #0f0f0f;
+    --color-bg-3: #141414;
+    --color-bg-4: rgba(0, 0, 0, 0.65);
+    --color-bg-5: #0f0f0f;
+    /* 文字 Text */
+    --color-text-1: #fafafa;
+    --color-text-2: #bfbfbf;
+    --color-text-3: #8c8c8c;
+    --color-text-4: #6d6d6d;
+    --color-text-5: #61a0ff;
+    --color-text-6: #fafafa;
+    --color-text-7: #6d6d6d;
+    --color-text-8: #262626;
+    --color-text-9: #fafafa;
+
+
+    /* 蓝色色阶 */
+    --color-blue-11: #182253;
+    --color-blue-10: #203588;
+    --color-blue-9: #2139ac;
+    --color-blue-8: #2145d4;
+    --color-blue-7: #2354e6;
+    --color-blue-6: #3f78f2;
+    --color-blue-5: #639cf7;
+    --color-blue-4: #95bffb;
+    --color-blue-3: #c0d7fd;
+    --color-blue-2: #dce8fd;
+    --color-blue-1: #eff5ff;
+
+}
