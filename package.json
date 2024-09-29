@@ -28,6 +28,7 @@
   "dependencies": {
     "@ant-design/cssinjs": "^1.18.1",
     "@ant-design/icons": "^5.3.7",
+    "@ant-design/nextjs-registry": "^1.0.1",
     "@next/bundle-analyzer": "^14.2.5",
     "@tanstack/react-query": "^5.38.0",
     "@types/node": "20.2.5",
@@ -40,6 +41,7 @@
     "boring-avatars": "^1.11.2",
     "chinese-lunar": "^0.1.4",
     "commitizen": "^4.3.0",
+    "cookies-next": "^4.2.1",
     "date-holidays": "^3.23.3",
     "dayjs": "^1.11.9",
     "env-cmd": "^10.1.0",

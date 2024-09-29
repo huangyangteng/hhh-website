@@ -1,45 +1,38 @@
 'use client'
 
-import React from 'react'
-import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs'
-import type Entity from '@ant-design/cssinjs/es/Cache'
-import { useServerInsertedHTML } from 'next/navigation'
+import { ReactNode } from 'react'
+import { ThemeProvider } from 'next-themes'
+import { AntdRegistry } from '@ant-design/nextjs-registry'
 import { ConfigProvider, theme } from 'antd'
 import { useTheme } from 'next-themes'
-const darkComponents = {
-    Progress: {
-        circleTextColor: '#333',
-    },
+interface Props {
+    defaultTheme: string
+    children: ReactNode
 }
-const StyledComponentsRegistry = ({ children }: React.PropsWithChildren) => {
-    const isLight = useTheme().theme === 'light'
-    const cache = React.useMemo<Entity>(() => createCache(), [])
-    const isServerInserted = React.useRef<boolean>(false)
-    useServerInsertedHTML(() => {
-        // 避免 css 重复插入
-        if (isServerInserted.current) {
-            return
-        }
-        isServerInserted.current = true
-        return (
-            <style
-                id="antd"
-                dangerouslySetInnerHTML={{ __html: extractStyle(cache, true) }}
-            />
-        )
-    })
+export default function Providers({ defaultTheme, children }: Props) {
     return (
-        <ConfigProvider
-            theme={{
-                algorithm: isLight
-                    ? theme.defaultAlgorithm
-                    : theme.darkAlgorithm,
-                components: isLight ? {} : darkComponents,
-            }}
-        >
-            <StyleProvider cache={cache}>{children}</StyleProvider>
-        </ConfigProvider>
+        <AntdRegistry>
+            <ThemeProvider>
+                <AntDesignProvider defaultTheme={defaultTheme}>
+                    {children}
+                </AntDesignProvider>
+            </ThemeProvider>
+        </AntdRegistry>
     )
 }
 
-export default StyledComponentsRegistry
+function AntDesignProvider({ defaultTheme, children }: Props) {
+    const { defaultAlgorithm, darkAlgorithm } = theme
+    const { theme: currentTheme = defaultTheme } = useTheme()
+
+    return (
+        <ConfigProvider
+            theme={{
+                algorithm:
+                    currentTheme === 'light' ? defaultAlgorithm : darkAlgorithm,
+            }}
+        >
+            {children}
+        </ConfigProvider>
+    )
+}

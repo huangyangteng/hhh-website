@@ -7,12 +7,15 @@ export const metadata = {
 }
 
 import { Providers } from '@/lib/providers/Providers'
+import { cookies } from 'next/headers'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+    const cookieStore = cookies()
+    const defaultTheme = cookieStore.get('theme')?.value || 'dark'
     return (
         <html lang="en" suppressHydrationWarning={true}>
             <body suppressHydrationWarning={true}>
-                <Providers>{children}</Providers>
+                <Providers defaultTheme={defaultTheme}>{children}</Providers>
             </body>
         </html>
     )
