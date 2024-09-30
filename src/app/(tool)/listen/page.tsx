@@ -16,7 +16,7 @@ import {
     controlsAtom,
     stepAtom,
     speedAtom,
-    playModeAtom
+    playModeAtom,
 } from './state/config'
 export default function Home() {
     const videoDom = useRef<HTMLVideoElement>(null)
@@ -56,12 +56,11 @@ export default function Home() {
             }
         }
     }
-    const seedCurrentTime=(time:number)=>{
+    const seedCurrentTime = (time: number) => {
         if (videoDom.current) {
             videoDom.current.currentTime = time
         }
     }
-    
 
     const onDrop = (e: DragEvent) => {
         e.preventDefault()
@@ -70,7 +69,7 @@ export default function Home() {
         setVideoSrc(URL.createObjectURL(videoFile))
         setVideoName(videoFile.name)
     }
-   
+
     const onLoad = () => {
         const duration = videoDom.current!.duration
         const shortVideoLength = 60 * 30
@@ -112,7 +111,7 @@ export default function Home() {
         setCurrentTime(videoDom.current.currentTime)
         setHistoryList([
             ...historyList.filter((item) => item.name !== videoName),
-            { name: videoName, time: new Date().toLocaleString(), currentTime }
+            { name: videoName, time: new Date().toLocaleString(), currentTime },
         ])
         if (videoDom.current!.currentTime >= curVideo.end) {
             if (playMode === PlayMode.Normal) {
@@ -150,7 +149,7 @@ export default function Home() {
     }
 
     const [fullScreen] = useRecoilState(fullScreenAtom)
-    const [showOverlay,setShowOverlay] = useRecoilState(showOverLayAtom)
+    const [showOverlay, setShowOverlay] = useRecoilState(showOverLayAtom)
     const [controls] = useRecoilState(controlsAtom)
     const [playMode] = useRecoilState(playModeAtom)
     const [step] = useRecoilState(stepAtom)
@@ -164,26 +163,25 @@ export default function Home() {
     // 绑定快捷键
     useEffect(() => {
         const onKeyup = (e: KeyboardEvent) => {
-            if(e.key==='a'){
+            if (e.key === 'a') {
                 e.preventDefault()
                 setShowOverlay(!showOverlay)
             }
-            if( e.key==='ArrowUp'){
+            if (e.key === 'ArrowUp') {
                 e.preventDefault()
                 let nextIndex = curVideoIndex - 1
                 if (nextIndex < 0) {
-                    nextIndex=segments.length-1
+                    nextIndex = segments.length - 1
                 }
                 playVideo(nextIndex)
             }
-            if( e.key==='ArrowDown'){
+            if (e.key === 'ArrowDown') {
                 e.preventDefault()
                 let nextIndex = curVideoIndex + 1
                 if (nextIndex >= segments.length) {
-                    nextIndex=0
+                    nextIndex = 0
                 }
                 playVideo(nextIndex)
-
             }
             if (e.key === 'ArrowLeft') seekVideo(true)
             if (e.key === 'ArrowRight') seekVideo(false)
@@ -200,42 +198,48 @@ export default function Home() {
 
         window.addEventListener('keyup', onKeyup)
         return () => window.removeEventListener('keyup', onKeyup)
-    }, [curVideoIndex, segments, step,showOverlay])
+    }, [curVideoIndex, segments, step, showOverlay])
 
     return (
         <main
             className={styles.main}
             onDrop={onDrop}
-            onDragOver={(e) => e.preventDefault()}>
+            onDragOver={(e) => e.preventDefault()}
+        >
             {videoSrc ? (
-                <>  
-                <section className={styles.videoWrapper}>
-                    <div className={'flex-1 mr-4'}>
-                        <video
-                            ref={videoDom}
-                            src={videoSrc}
-                            className={fullScreen ? styles.fullVideo : ''}
-                            playsInline
-                            onLoadedMetadata={onLoad}
-                            onClick={clickVideo}
-                            onContextMenu={onContextMenu}
-                            onTouchStart={clickVideo}
-                            controls={controls}
-                            onTimeUpdate={onTimeUpdate}></video>
-                    </div>
-                    <VideoPin videoDom={videoDom}   videoKey={videoName+'__'+curVideoIndex} goToPinTime={seedCurrentTime}></VideoPin>
-                    <VideoAside
-                        videoName={videoName}
-                        curVideoIndex={curVideoIndex}
-                        segments={segments}
-                        progress={progress}
-                        progressOnChange={progressOnChange}
-                        playVideo={playVideo}></VideoAside>
-                    <VideoConfig videoDom={videoDom} curVideo={curVideo} />
-                    {/* overlay */}
-                  
-                </section>
-                {showOverlay && <VideoOverlay />}
+                <>
+                    <section className={styles.videoWrapper}>
+                        <div className={styles.videoContent}>
+                            <video
+                                ref={videoDom}
+                                src={videoSrc}
+                                className={fullScreen ? styles.fullVideo : ''}
+                                playsInline
+                                onLoadedMetadata={onLoad}
+                                onClick={clickVideo}
+                                onContextMenu={onContextMenu}
+                                onTouchStart={clickVideo}
+                                controls={controls}
+                                onTimeUpdate={onTimeUpdate}
+                            ></video>
+                        </div>
+                        <VideoPin
+                            videoDom={videoDom}
+                            videoKey={videoName + '__' + curVideoIndex}
+                            goToPinTime={seedCurrentTime}
+                        ></VideoPin>
+                        <VideoAside
+                            videoName={videoName}
+                            curVideoIndex={curVideoIndex}
+                            segments={segments}
+                            progress={progress}
+                            progressOnChange={progressOnChange}
+                            playVideo={playVideo}
+                        ></VideoAside>
+                        <VideoConfig videoDom={videoDom} curVideo={curVideo} />
+                        {/* overlay */}
+                    </section>
+                    {showOverlay && <VideoOverlay />}
                 </>
             ) : (
                 <DropBox uploadSuccess={onUploadSuccess}></DropBox>

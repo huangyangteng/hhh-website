@@ -1,15 +1,21 @@
-import React, { useState, useEffect,useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Segment, PlayMode } from '@/types'
 import styles from './styles.module.scss'
 import { useRecoilState } from 'recoil'
-import { fullScreenAtom,showOverLayAtom ,controlsAtom,stepAtom,speedAtom,playModeAtom} from '../../state/config'
+import {
+    fullScreenAtom,
+    showOverLayAtom,
+    controlsAtom,
+    stepAtom,
+    speedAtom,
+    playModeAtom,
+} from '../../state/config'
 export default function Config({ videoDom, curVideo }: any) {
     // config
     const [showConfig, setShowConfig] = useState(true)
     const [controls, setControls] = useRecoilState(controlsAtom)
 
     const [fullScreen, setFullScreen] = useRecoilState(fullScreenAtom)
-
 
     const [showOverlay, setShowOverlay] = useRecoilState(showOverLayAtom)
     const [step, setStep] = useRecoilState(stepAtom)
@@ -61,16 +67,17 @@ export default function Config({ videoDom, curVideo }: any) {
     }, [countdown])
     return (
         <div className={fullScreen ? styles.bottomSettings : ''}>
-            <div
-                className={
-                    'flex items-center p-4 flex-wrap flex-col lg:flex-row '
-                }>
+            <div className={styles.videoAside}>
                 <h2
-                    style={{ opacity: showConfig ? 1 : 0.1,userSelect:'none' }}
+                    style={{
+                        opacity: showConfig ? 1 : 0.1,
+                        userSelect: 'none',
+                    }}
                     onDoubleClick={() => {
                         setShowConfig(!showConfig)
                     }}
-                    className={'text-2xl mr-4'}>
+                    className={'text-2xl mr-4'}
+                >
                     config:
                 </h2>
                 {showConfig && (
@@ -81,21 +88,24 @@ export default function Config({ videoDom, curVideo }: any) {
                             </button>
                             <button
                                 className={'mr-2'}
-                                onClick={clickPauseVideo}>
+                                onClick={clickPauseVideo}
+                            >
                                 暂停
                             </button>
                             <button
                                 className={'mr-2'}
                                 onClick={() => {
                                     seekVideo(true)
-                                }}>
+                                }}
+                            >
                                 快退
                             </button>
                             <button
                                 className={'mr-2'}
                                 onClick={() => {
                                     seekVideo(false)
-                                }}>
+                                }}
+                            >
                                 快进
                             </button>
                         </div>
@@ -158,7 +168,8 @@ export default function Config({ videoDom, curVideo }: any) {
                                 value={playMode}
                                 onChange={(e) =>
                                     setPlayMode(Number(e.target.value))
-                                }>
+                                }
+                            >
                                 <option value={PlayMode.Normal}>Normal</option>
                                 <option value={PlayMode.LoopOne}>
                                     LoopOne
@@ -173,7 +184,8 @@ export default function Config({ videoDom, curVideo }: any) {
                                 value={countdown}
                                 onChange={(e) =>
                                     setCountdown(Number(e.target.value))
-                                }></input>
+                                }
+                            ></input>
                             <button onClick={startCountDown}>start</button>
                             <button onClick={resetCountDown}>reset</button>
                         </div>
