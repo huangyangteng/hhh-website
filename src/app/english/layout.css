@@ -10,7 +10,10 @@
     left: 0;
     top: 0;
     transition: width .2s ease;
-
+    @media (max-width: 640px) {
+        padding: 0 1em;
+        display: none;
+    }
     &:hover {
         .en-sidebar-toggle .en-toggle-icon {
             opacity: 0.6;
