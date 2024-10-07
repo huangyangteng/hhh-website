@@ -18,15 +18,15 @@ function EnSidebar() {
             line: <span className={'en-sidebar-divide'}></span>,
         },
         {
+            link: '/english/guide',
+            tooltip: 'guide',
+            icon: <span>📚</span>,
+        },
+        {
             link: '/english/',
             tooltip: 'Home',
             icon: <span>🏠</span>,
         },
-        // {
-        //     link: '/english/phonetics',
-        //     tooltip: '音标',
-        //     icon: <span>👄</span>,
-        // },
         // {
         //     link: '/english/listen',
         //     tooltip: '听力',

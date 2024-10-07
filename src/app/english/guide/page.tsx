@@ -7,6 +7,7 @@ import {
     Grammar,
     Listening,
     ListItemType,
+    Methods,
     phoneticChange,
     Phonetics,
     Reading,
@@ -243,6 +244,59 @@ export default function Guide() {
                                             bordered={false}
                                         >
                                             {Writing.descs.map((item) => {
+                                                if (
+                                                    item.type === DescType.List
+                                                ) {
+                                                    return renderList(
+                                                        item.content as ListItemType[],
+                                                    )
+                                                } else {
+                                                    return item.content as ReactNode
+                                                }
+                                            })}
+                                        </Card>
+                                    </div>
+                                ),
+                            },
+                        ]}
+                    />
+                </section>
+                {/*方法论*/}
+                <section className={styles.section}>
+                    <h2>英语学习方法论</h2>
+                    <Timeline
+                        className={styles.timelineWrapper}
+                        items={[
+                            {
+                                children: (
+                                    <div className={styles.card}>
+                                        <Card
+                                            title={Methods.title}
+                                            bordered={false}
+                                        >
+                                            {Methods.descs.map((item) => {
+                                                if (
+                                                    item.type === DescType.List
+                                                ) {
+                                                    return renderList(
+                                                        item.content as ListItemType[],
+                                                    )
+                                                } else {
+                                                    return item.content as ReactNode
+                                                }
+                                            })}
+                                        </Card>
+                                    </div>
+                                ),
+                            },
+                            {
+                                children: (
+                                    <div>
+                                        <Card
+                                            title={Word.title}
+                                            bordered={false}
+                                        >
+                                            {Word.descs.map((item) => {
                                                 if (
                                                     item.type === DescType.List
                                                 ) {

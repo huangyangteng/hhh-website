@@ -1,5 +1,4 @@
-import styles from '@/app/english/guide/page.module.scss'
-import { Avatar, Card, List } from 'antd'
+import { Avatar, List } from 'antd'
 
 /**
  * desc中的元素
@@ -114,9 +113,15 @@ export const Listening = {
             type: DescType.Jsx,
             content: (
                 <>
-                    <div>精听和泛听是扩展听力语料库的重要方法,其中精听为主</div>
                     <div>
-                        需要每天拿出1个小时练习听力，大概1年左右听力水平就会大大提升。
+                        精听和泛听是扩展听力语料库的重要方法,其中精听为主,精听的素材要重复听N次，直到彻底听懂,并且不断复习。
+                    </div>
+                    <div>
+                        需要每天拿出1个小时练习听力,听力没有捷径，只能慢慢培养。
+                    </div>
+                    <div>
+                        听力的输入是
+                        【音频】或者【音频+画面】，不要搞错了输入，否则练习将没有作用。
                     </div>
                 </>
             ),
@@ -127,17 +132,22 @@ export const Listening = {
                 {
                     title: '跟我150天，保证你不看字幕听懂英文剧',
                     link: 'https://www.bilibili.com/video/BV1C1421R7TD/',
-                    desc: '这个课程作为听力学习的主线。听力基础阶段可以全程跟这个课程，跟完之后会发现听力水平大大提升。',
+                    desc: '精听材料。这个课程作为听力学习的主线。听力基础阶段可以全程跟这个课程，跟完之后会发现听力水平大大提升。',
                 },
                 {
                     title: '每日英语听写 Daily English Dictation',
                     link: 'https://www.bilibili.com/video/BV1U7411a7xG',
-                    desc: '支线教程，学有余力的时候听几个。',
+                    desc: '精听材料支线教程，学有余力的时候听几个。',
                 },
                 {
                     title: 'Learn English with Bob the Canadian',
                     link: 'https://www.bilibili.com/video/BV1ji421Y7y7',
-                    desc: '生活场景英语，用词简单，作为支线教程使用，有时间可以每天听一个',
+                    desc: '泛听材料。生活场景英语，用词简单，作为泛听材料使用，有时间听几个。',
+                },
+                {
+                    title: '看视频学英语',
+                    link: 'https://www.bilibili.com/video/BV1164y1y7gx',
+                    desc: '泛听材料。比较中二，听着玩',
                 },
             ],
         },
@@ -167,6 +177,11 @@ export const Speaking = {
                     title: '北外英语口语网课',
                     link: 'https://www.bilibili.com/video/BV1DL4y1u734',
                     desc: '主线教程，30天背诵30篇短文，作为基础的语料库输入，建议先过这个课程，把30篇短文作为最基础的语料库,后续再根据不同的场景去拓宽语料库。',
+                },
+                {
+                    title: '老友记影子跟读',
+                    link: 'https://www.bilibili.com/video/BV1dUsMezE9T',
+                    desc: '老友记影子跟读，听一遍，讲解一遍，跟读一遍',
                 },
                 {
                     title: '一些口语技巧',
@@ -288,6 +303,31 @@ export const Reading = {
 
 export const Writing = {
     title: '写作',
+    descs: [
+        {
+            type: DescType.Jsx,
+            content: (
+                <>
+                    <div>英语写作要在理解中英文的差异的基础上进行。</div>
+                </>
+            ),
+        },
+
+        {
+            type: DescType.List,
+            content: [
+                {
+                    title: '英文写作有诀窍 - 刘美君',
+                    link: 'https://www.bilibili.com/video/BV1rb4y1b7Ke',
+                    desc: '如何建立英文式的思考习惯？如何避免中式英文？',
+                },
+            ],
+        },
+    ],
+}
+
+export const Methods = {
+    title: '方法轮',
     descs: [
         {
             type: DescType.Jsx,
