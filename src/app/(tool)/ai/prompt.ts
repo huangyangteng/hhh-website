@@ -1,4 +1,8 @@
 //variable naming
+
+export enum PromptType {
+    VariableNaming,
+}
 export const getVariablePrompt = (input: string) => {
     return `
 variable naming
@@ -8,4 +12,11 @@ Output:
 Input:${input}
 Output:
 `
+}
+
+const map = {
+    [PromptType.VariableNaming]: getVariablePrompt,
+}
+export const getPrompt = (type: PromptType) => {
+    return map[type]
 }
