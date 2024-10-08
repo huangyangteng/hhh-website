@@ -142,9 +142,9 @@ export const Listening = {
                     desc: '泛听材料。生活场景英语，用词简单，作为泛听材料使用，有时间听几个。',
                 },
                 {
-                    title: '看视频学英语',
-                    link: 'https://www.bilibili.com/video/BV1164y1y7gx',
-                    desc: '泛听材料。比较中二，听着玩',
+                    title: '【沉浸式英语播客】初学者篇',
+                    link: 'https://www.bilibili.com/video/BV1tjtoeiEe6',
+                    desc: '泛听材料。比较简单,偏商务英语。',
                 },
             ],
         },
