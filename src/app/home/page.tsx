@@ -4,6 +4,7 @@ import Header from '@/app/home/components/Header'
 import Content from '@/app/home/components/Content'
 import Bottom from '@/app/home/components/Bottom'
 import Redirect from '@/app/home/components/Redirect'
+import SearchEverything from '@/app/home/components/SearchEveryThing'
 
 export default function Home() {
     return (
@@ -13,6 +14,7 @@ export default function Home() {
             <Wave />
             <Bottom />
             <Redirect />
+            <SearchEverything />
         </section>
     )
 }

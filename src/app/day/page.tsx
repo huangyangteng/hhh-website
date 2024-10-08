@@ -24,7 +24,6 @@ export default function Day() {
     // 自动滚动到当前月份
     useEffect(() => {
         const month = dayjs().month() + 1
-        console.log('month', month)
         scrollTo('#month-' + month)
     }, [])
     return (

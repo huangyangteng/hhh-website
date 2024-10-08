@@ -1,0 +1,20 @@
+.wrapper{
+  position: fixed;
+  right: 2em;
+  width:240px;
+  top:100px;
+  z-index: 9;
+}
+.optionItem{
+  display: flex;
+  align-items: center;
+  padding-left: 0.1em;
+  gap:0.5em;
+}
+
+@media (max-width: 750px) {
+  .wrapper{
+    top:60px;
+    right:0;
+  }
+}
