@@ -35,6 +35,42 @@ export default function Guide() {
                         </li>
                         <li>
                             听说不分家，读写不分家，这两部分其实是相对独立的能力，可以分开学习。
+                            <br />
+                            对于应试英语，例如四六级、考研等，阅读是关键。对于实际交流，听说更为重要。
+                        </li>
+                        <li>
+                            <span>练习时明确听说读写的输入和输出。</span>
+                            <table className={styles.table}>
+                                <thead>
+                                    <tr>
+                                        <th>能力</th>
+                                        <th>输入</th>
+                                        <th>输出</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>听力</td>
+                                        <td>音波</td>
+                                        <td>脑海中的画面</td>
+                                    </tr>
+                                    <tr>
+                                        <td>口语</td>
+                                        <td>表达的欲望</td>
+                                        <td>音波</td>
+                                    </tr>
+                                    <tr>
+                                        <td>阅读</td>
+                                        <td>眼睛看到的句子或者单词</td>
+                                        <td>脑海中的画面</td>
+                                    </tr>
+                                    <tr>
+                                        <td>写作</td>
+                                        <td>表达欲</td>
+                                        <td>脑海中的画面</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </li>
                     </ul>
                 </section>
@@ -275,28 +311,6 @@ export default function Guide() {
                                             bordered={false}
                                         >
                                             {Methods.descs.map((item) => {
-                                                if (
-                                                    item.type === DescType.List
-                                                ) {
-                                                    return renderList(
-                                                        item.content as ListItemType[],
-                                                    )
-                                                } else {
-                                                    return item.content as ReactNode
-                                                }
-                                            })}
-                                        </Card>
-                                    </div>
-                                ),
-                            },
-                            {
-                                children: (
-                                    <div>
-                                        <Card
-                                            title={Word.title}
-                                            bordered={false}
-                                        >
-                                            {Word.descs.map((item) => {
                                                 if (
                                                     item.type === DescType.List
                                                 ) {

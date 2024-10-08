@@ -85,10 +85,7 @@ export const phoneticChange = {
             content: (
                 <>
                     <div>
-                        音变是指音标在读音上发生改变，例如连读、弱读、吞音等
-                    </div>
-                    <div>
-                        音变是听力能听懂的的基础,先大概掌握音变的规则，然后去大量输入听力内容，在真实场景中去体验。
+                        音变是指音标在读音上发生改变，例如连读、弱读、吞音等,音变是听力能听懂的的关键,初学时先大概掌握音变的规则，然后去大量输入听力内容，在真实场景中去体验。
                     </div>
                 </>
             ),
@@ -327,13 +324,16 @@ export const Writing = {
 }
 
 export const Methods = {
-    title: '方法轮',
+    title: '方法论',
     descs: [
         {
             type: DescType.Jsx,
             content: (
                 <>
-                    <div>英语写作要在理解中英文的差异的基础上进行。</div>
+                    <div>条条大道通罗马，找到适合自己的方法即可。</div>
+                    <div>
+                        什么是适合自己的方法?能让你持续坚持下去的方法就是适合自己的方法。
+                    </div>
                 </>
             ),
         },
@@ -342,9 +342,19 @@ export const Methods = {
             type: DescType.List,
             content: [
                 {
-                    title: '英文写作有诀窍 - 刘美君',
-                    link: 'https://www.bilibili.com/video/BV1rb4y1b7Ke',
-                    desc: '如何建立英文式的思考习惯？如何避免中式英文？',
+                    title: '《找对英语学习方法的第一本书》',
+                    link: 'https://book.douban.com/subject/11522125/',
+                    desc: '该书最大的作用是让你明白一些学习英语的误区，初看时可以颠覆认知。',
+                },
+                {
+                    title: '汉英对比与英语学习',
+                    link: 'https://book.douban.com/subject/26828212/',
+                    desc: '通过对比来学习英语',
+                },
+                {
+                    title: '学习观-YJango',
+                    link: 'https://www.zhihu.com/column/c_1247256938867068928',
+                    desc: '学习观',
                 },
             ],
         },
