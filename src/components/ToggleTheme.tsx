@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { setCookie } from 'cookies-next'
-
+import { MoonOutlined, SunOutlined } from '@ant-design/icons'
+import styles from './styles.module.scss'
 const ThemeSwitch = () => {
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
@@ -18,13 +19,23 @@ const ThemeSwitch = () => {
         setTheme(theme)
         setCookie('theme', theme)
     }
-
-    return (
-        <select value={theme} onChange={(e) => handleSetTheme(e.target.value)}>
-            <option value="system">System</option>
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-        </select>
+    return theme === 'dark' ? (
+        <span
+            className={styles.themeToggle}
+            onClick={() => handleSetTheme('light')}
+        >
+            <MoonOutlined />
+        </span>
+    ) : (
+        <span
+            className={styles.themeToggle}
+            style={{
+                transform: 'rotate(90deg)',
+            }}
+            onClick={() => handleSetTheme('dark')}
+        >
+            <SunOutlined />
+        </span>
     )
 }
 export default ThemeSwitch
