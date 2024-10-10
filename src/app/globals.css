@@ -66,3 +66,16 @@ body {
     }
 
 }
+
+.page-container{
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    >h1{
+        text-align: center;
+        padding:0.5em 0;
+    }
+}
+@media (max-width: 750px) {
+    padding: 0 1em;
+}

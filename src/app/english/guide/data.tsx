@@ -29,7 +29,11 @@ export function renderList(content: ListItemType[]) {
                                 src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
                             />
                         }
-                        title={<a href={item.link}>{item.title}</a>}
+                        title={
+                            <a target={'_blank'} href={item.link}>
+                                {item.title}
+                            </a>
+                        }
                         description={item.desc}
                     />
                 </List.Item>
@@ -345,6 +349,16 @@ export const Methods = {
                     title: '《找对英语学习方法的第一本书》',
                     link: 'https://book.douban.com/subject/11522125/',
                     desc: '该书最大的作用是让你明白一些学习英语的误区，初看时可以颠覆认知。',
+                },
+                {
+                    title: '程序员英语学习指南',
+                    link: 'https://a-programmers-guide-to-english.harryyu.me/',
+                    desc: '专为程序员编写的英语学习指南',
+                },
+                {
+                    title: '6个月即能学会英语-堪称最快速的英语学习法',
+                    link: 'https://www.bilibili.com/video/BV1LK4y147Ho',
+                    desc: '提供了一些英语学习的技巧',
                 },
                 {
                     title: '汉英对比与英语学习',

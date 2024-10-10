@@ -1,7 +1,7 @@
 export const symbolList = [
     { text: 'i', start: 140.510145, page: 1 },
     { text: 'ɝ', start: 149.16148, page: 1 },
-    { text: 'a', start: 131.429802, page: 1 },
+    { text: 'ɑ', start: 131.429802, page: 1 },
     { text: 'ɔ', start: 171.189316, page: 1 },
     { text: 'u', start: 180.654306, page: 1 },
 
@@ -47,7 +47,7 @@ export const symbolList = [
     { text: 'ŋ', start: 75.155253, page: 1 },
     { text: 'l', start: 79.148829, page: 1 },
     { text: 'j', start: 91.418903, page: 1 },
-    { text: 'w', start: 88.323028, page: 1 }
+    { text: 'w', start: 88.323028, page: 1 },
 ]
 
 export const phoneticList = symbolList.map((i) => i.text)
@@ -60,18 +60,19 @@ let sortedList = symbolList.map((i) => i).sort((a, b) => a.start - b.start)
 export const endMap = new Map(
     sortedList.map((item, index) => [
         item.text,
-        sortedList[index + 1]?.start || 189  //最后一个音标没有end,设置为视频的duration
-    ])
+        sortedList[index + 1]?.start || 189, //最后一个音标没有end,设置为视频的duration
+    ]),
 )
 
 let map = {
     i: 5,
     ɪ: 7,
     e: 11,
-    eɪ:11,
+    eɪ: 11,
     ɛ: 13,
     æ: 15,
     a: 17,
+    ɑ: 17,
     ar: 19,
     ɔ: 21,
     ɔr: 23,
@@ -113,6 +114,6 @@ let map = {
     r: 104,
     j: 106,
     h: 109,
-    w: 111
+    w: 111,
 }
 export const pdfMap = new Map(Object.entries(map))

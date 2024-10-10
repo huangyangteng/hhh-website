@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Tooltip } from 'antd'
 import './layout.css'
+import ToggleTheme from '@/components/ToggleTheme'
 
 function EnSidebar() {
     const [expand, setExpand] = useState(true)
@@ -74,6 +75,7 @@ function EnSidebar() {
                         {!!item.line && item.line}
                     </li>
                 ))}
+                <ToggleTheme />
             </div>
             <div className="en-sidebar-toggle">
                 <div
