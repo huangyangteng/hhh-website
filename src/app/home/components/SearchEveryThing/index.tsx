@@ -10,6 +10,7 @@ import {
     LinkOutlined,
     VideoCameraOutlined,
 } from '@ant-design/icons'
+import { openPage } from '@/utils'
 
 enum SuggestOptionType {
     Link,
@@ -37,35 +38,34 @@ function OptionItem({ type, children }) {
     )
 }
 
-export default function SearchEverything() {
-    const router = useRouter()
+export default function SearchEverything({ sx = {} }) {
     const pageOptionList = [
         {
             type: SuggestOptionType.Link,
             value: 'ai',
             onSelect: () => {
-                router.push('/ai')
+                openPage('/ai')
             },
         },
         {
             type: SuggestOptionType.Link,
             value: 'day',
             onSelect: () => {
-                router.push('/day')
+                openPage('/day')
             },
         },
         {
             type: SuggestOptionType.Link,
             value: 'english guide',
             onSelect: () => {
-                router.push('/english/guide')
+                openPage('/english/guide')
             },
         },
         {
             type: SuggestOptionType.Link,
             value: 'etf',
             onSelect: () => {
-                router.push('https://leexiao.site/g/etf')
+                openPage('https://leexiao.site/g/etf')
             },
         },
     ]
@@ -91,7 +91,7 @@ export default function SearchEverything() {
         )
     }
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} style={sx}>
             <AutoComplete
                 options={options}
                 filterOption={(inputValue, option) =>

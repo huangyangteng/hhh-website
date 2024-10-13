@@ -10,6 +10,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import { scrollTo } from '@/utils'
+import SearchEverything from '@/app/home/components/SearchEveryThing'
 
 export const revalidate = 0
 const EmptyDays = ({ len }) => {
@@ -43,7 +44,13 @@ export default function Day() {
                     <b>{year}年 🐲</b>
                 </h1>
                 <YearProgress allDay={allDay} />
-                <aside>逝者如斯夫，不舍昼夜。</aside>
+                <aside style={{ position: 'relative' }}>
+                    <SearchEverything
+                        sx={{
+                            top: '25px',
+                        }}
+                    />
+                </aside>
             </header>
             <div className={styles.calender}>
                 {months.map((month, index) => {

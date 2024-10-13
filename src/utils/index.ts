@@ -48,3 +48,7 @@ export function scrollTo(selector: string) {
     const section = document.querySelector(selector)
     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
+
+export function openPage(link: string) {
+    window.open(link, '_blank')
+}
