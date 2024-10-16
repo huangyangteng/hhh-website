@@ -33,14 +33,14 @@ const formatEn = (data: EnWordType): WordInfoType | string => {
         soundmark: {
             uk: uk
                 ? {
-                      text: uk.text ? 'uk:' + uk.text : 'uk:empty😭',
+                      text: uk.text ? 'uk' + uk.text : 'uk:empty😭',
                       sound: uk.audio,
                       fsound: uk.audio,
                   }
                 : null,
             us: us
                 ? {
-                      text: us.text ? 'us:' + us.text : 'us:empty😭',
+                      text: us.text ? 'us' + us.text : 'us:empty😭',
                       sound: us.audio,
                       fsound: us.audio,
                   }
