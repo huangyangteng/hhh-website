@@ -150,6 +150,11 @@ export const Listening = {
                     link: 'https://www.bilibili.com/video/BV1tjtoeiEe6',
                     desc: '泛听材料。比较简单,偏商务英语。',
                 },
+                {
+                    title: '美中小学精选课程',
+                    link: 'https://www.bilibili.com/video/BV1c7411Z78e/?spm_id_from=333.337.search-card.all.click&vd_source=6baf3861f0497525dc85a8a0b6bed689',
+                    desc: '泛听材料。无字幕，但是发音准确，用词简单盲听基本可以完全听懂。',
+                },
             ],
         },
     ],
