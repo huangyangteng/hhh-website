@@ -17,7 +17,9 @@ const ItemSection = ({ info }: { info: ProjectInfoType }) => {
                             {item.type === ItemType.Link ? (
                                 <a href={item.link}>{item.label}</a>
                             ) : (
-                                item.text
+                                <span>
+                                    {item.label} {item.text}
+                                </span>
                             )}
                             <CopyBtn text={item.link ? item.link : item.text} />
                         </Space>
