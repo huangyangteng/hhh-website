@@ -68,6 +68,20 @@ export default function SearchEverything({ sx = {} }) {
                 openPage('https://leexiao.site/g/etf')
             },
         },
+        {
+            type: SuggestOptionType.Link,
+            value: 'projects',
+            onSelect: () => {
+                openPage('https://leexiao.site/projects')
+            },
+        },
+        {
+            type: SuggestOptionType.Link,
+            value: 'work',
+            onSelect: () => {
+                openPage('https://leexiao.site/english')
+            },
+        },
     ]
 
     const map = new Map(

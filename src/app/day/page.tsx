@@ -7,7 +7,7 @@ import YearProgress from '@/app/day/components/YearProgress'
 import MonthDetail from '@/app/day/components/MonthDetail'
 import Link from 'next/link'
 import Image from 'next/image'
-import SearchEverything from '@/app/home/components/SearchEveryThing'
+import SearchEverything from '../../components/SearchEveryThing'
 import AutoJump from '@/app/day/components/AutoJump'
 
 export const revalidate = 0

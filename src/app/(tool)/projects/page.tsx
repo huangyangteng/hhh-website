@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
-import { ItemType, Project } from '@/app/(tool)/work/type'
-import ProjectItem from '@/app/(tool)/work/_components/ProjectItem'
+import { ItemType, Project } from '@/app/(tool)/projects/type'
+import ProjectItem from '@/app/(tool)/projects/_components/ProjectItem'
 import { Space } from 'antd'
 
 export const metadata: Metadata = {

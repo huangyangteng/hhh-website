@@ -1,5 +1,5 @@
 import { Button, Space } from 'antd'
-import CopyBtn from '@/app/(tool)/work/_components/CopyBtn'
+import CopyBtn from '@/app/(tool)/projects/_components/CopyBtn'
 
 export default function ProjectOperations() {
     return (

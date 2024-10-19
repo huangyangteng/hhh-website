@@ -1,7 +1,7 @@
-import { ItemType, Project, ProjectInfoType } from '@/app/(tool)/work/type'
+import { ItemType, Project, ProjectInfoType } from '@/app/(tool)/projects/type'
 import { Card, Flex, Space } from 'antd'
-import CopyBtn from '@/app/(tool)/work/_components/CopyBtn'
-import ProjectOperations from '@/app/(tool)/work/_components/ProjectOperations'
+import CopyBtn from '@/app/(tool)/projects/_components/CopyBtn'
+import ProjectOperations from '@/app/(tool)/projects/_components/ProjectOperations'
 import styles from '../styles.module.scss'
 interface Props {
     project: Project
