@@ -1,4 +1,3 @@
-'use client'
 import { generateDates } from './utils'
 import DayDetail from './components/DayDetail'
 import styles from './styles.module.scss'
@@ -8,9 +7,8 @@ import YearProgress from '@/app/day/components/YearProgress'
 import MonthDetail from '@/app/day/components/MonthDetail'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect } from 'react'
-import { scrollTo } from '@/utils'
 import SearchEverything from '@/app/home/components/SearchEveryThing'
+import AutoJump from '@/app/day/components/AutoJump'
 
 export const revalidate = 0
 const EmptyDays = ({ len }) => {
@@ -22,11 +20,7 @@ export default function Day() {
     const year = dayjs().year()
     const months = generateDates(year)
     const allDay = months.map((item) => item.days).flat()
-    // 自动滚动到当前月份
-    useEffect(() => {
-        const month = dayjs().month() + 1
-        scrollTo('#month-' + month)
-    }, [])
+
     return (
         <section className={styles.page}>
             <header className={styles.header}>
@@ -76,6 +70,7 @@ export default function Day() {
                     )
                 })}
             </div>
+            <AutoJump />
         </section>
     )
 }
