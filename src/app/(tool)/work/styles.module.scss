@@ -1,0 +1,14 @@
+.projectSection {
+
+  > h3 {
+    line-height: 2;
+    font-size: 20px;
+  }
+
+  ul {
+    padding-left: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+}
