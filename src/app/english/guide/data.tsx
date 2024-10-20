@@ -16,13 +16,14 @@ export interface ListItemType {
     desc: string
 }
 
-export function renderList(content: ListItemType[]) {
+export function renderList(content: ListItemType[], key: string) {
     return (
         <List
+            key={key}
             itemLayout="horizontal"
             dataSource={content}
             renderItem={(item, index) => (
-                <List.Item>
+                <List.Item key={item.title}>
                     <List.Item.Meta
                         avatar={
                             <Avatar
@@ -48,13 +49,13 @@ export const Phonetics = {
         {
             type: DescType.Jsx,
             content: (
-                <>
+                <div>
                     <div>音标要刷到熟练为止。</div>
                     <div>
                         音标分为英音和美音，其实二者的差别只是个别音标不同，初学时不必在意，任选一种学习即可。
                     </div>
                     <div>学习主线:</div>
-                </>
+                </div>
             ),
         },
 

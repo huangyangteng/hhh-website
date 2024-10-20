@@ -12,7 +12,7 @@ import { ReactNode } from 'react'
 export default function EnMethods() {
     return (
         <section className={styles.section}>
-            <h2>英语学习方法论</h2>
+            <h2 id={'英语学习方法论'}>英语学习方法论</h2>
             <Timeline
                 className={styles.timelineWrapper}
                 items={[
@@ -20,13 +20,20 @@ export default function EnMethods() {
                         children: (
                             <div className={styles.card}>
                                 <Card title={Methods.title} bordered={false}>
-                                    {Methods.descs.map((item) => {
+                                    {Methods.descs.map((item, index) => {
                                         if (item.type === DescType.List) {
                                             return renderList(
                                                 item.content as ListItemType[],
+                                                'Methods',
                                             )
                                         } else {
-                                            return item.content as ReactNode
+                                            return (
+                                                <div
+                                                    key={Methods.title + index}
+                                                >
+                                                    {item.content as ReactNode}
+                                                </div>
+                                            )
                                         }
                                     })}
                                 </Card>

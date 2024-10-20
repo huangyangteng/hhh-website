@@ -51,3 +51,13 @@
 }
 .card {
 }
+
+.enLearningAnchor{
+    width:200px;
+    position: absolute;
+    right: 20px;
+    padding-top:4em;
+    @media (max-width: 640px) {
+        display: none;
+    }
+}

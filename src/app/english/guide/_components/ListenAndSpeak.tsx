@@ -16,7 +16,7 @@ import { ReactNode } from 'react'
 export default function ListenAndSpeak() {
     return (
         <section className={styles.section}>
-            <h2>听说基础</h2>
+            <h2 id={'听说基础'}>听说基础</h2>
             <Timeline
                 className={styles.timelineWrapper}
                 items={[
@@ -24,13 +24,22 @@ export default function ListenAndSpeak() {
                         children: (
                             <div className={styles.card}>
                                 <Card title={Phonetics.title} bordered={false}>
-                                    {Phonetics.descs.map((item) => {
+                                    {Phonetics.descs.map((item, index) => {
                                         if (item.type === DescType.List) {
                                             return renderList(
                                                 item.content as ListItemType[],
+                                                'Phonetics',
                                             )
                                         } else {
-                                            return item.content as ReactNode
+                                            return (
+                                                <div
+                                                    key={
+                                                        Phonetics.title + index
+                                                    }
+                                                >
+                                                    {item.content as ReactNode}
+                                                </div>
+                                            )
                                         }
                                     })}
                                 </Card>
@@ -44,13 +53,23 @@ export default function ListenAndSpeak() {
                                     title={phoneticChange.title}
                                     bordered={false}
                                 >
-                                    {phoneticChange.descs.map((item) => {
+                                    {phoneticChange.descs.map((item, index) => {
                                         if (item.type === DescType.List) {
                                             return renderList(
                                                 item.content as ListItemType[],
+                                                'phoneticChange',
                                             )
                                         } else {
-                                            return item.content as ReactNode
+                                            return (
+                                                <div
+                                                    key={
+                                                        phoneticChange.title +
+                                                        index
+                                                    }
+                                                >
+                                                    {item.content as ReactNode}
+                                                </div>
+                                            )
                                         }
                                     })}
                                 </Card>
@@ -59,7 +78,7 @@ export default function ListenAndSpeak() {
                     },
                 ]}
             />
-            <h2>听力</h2>
+            <h2 id={'听力'}>听力</h2>
             <Timeline
                 className={styles.timelineWrapper}
                 items={[
@@ -67,13 +86,22 @@ export default function ListenAndSpeak() {
                         children: (
                             <div>
                                 <Card title={Listening.title} bordered={false}>
-                                    {Listening.descs.map((item) => {
+                                    {Listening.descs.map((item, index) => {
                                         if (item.type === DescType.List) {
                                             return renderList(
                                                 item.content as ListItemType[],
+                                                'Listening',
                                             )
                                         } else {
-                                            return item.content as ReactNode
+                                            return (
+                                                <div
+                                                    key={
+                                                        Listening.title + index
+                                                    }
+                                                >
+                                                    {item.content as ReactNode}
+                                                </div>
+                                            )
                                         }
                                     })}
                                 </Card>
@@ -83,7 +111,7 @@ export default function ListenAndSpeak() {
                 ]}
             />
 
-            <h2>口语</h2>
+            <h2 id={'口语'}>口语</h2>
             <Timeline
                 className={styles.timelineWrapper}
                 items={[
@@ -91,13 +119,20 @@ export default function ListenAndSpeak() {
                         children: (
                             <div>
                                 <Card title={Speaking.title} bordered={false}>
-                                    {Speaking.descs.map((item) => {
+                                    {Speaking.descs.map((item, index) => {
                                         if (item.type === DescType.List) {
                                             return renderList(
                                                 item.content as ListItemType[],
+                                                'Speaking',
                                             )
                                         } else {
-                                            return item.content as ReactNode
+                                            return (
+                                                <div
+                                                    key={Speaking.title + index}
+                                                >
+                                                    {item.content as ReactNode}
+                                                </div>
+                                            )
                                         }
                                     })}
                                 </Card>

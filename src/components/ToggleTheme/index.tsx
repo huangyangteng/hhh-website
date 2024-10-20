@@ -19,7 +19,7 @@ const ThemeSwitch = () => {
         setTheme(theme)
         setCookie('theme', theme)
     }
-    return theme === 'dark' ? (
+    return theme !== 'light' ? (
         <span
             className={styles.themeToggle}
             onClick={() => handleSetTheme('light')}

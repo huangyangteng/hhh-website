@@ -3,18 +3,19 @@ import ListenAndSpeak from '@/app/english/guide/_components/ListenAndSpeak'
 import ReadAndWrite from '@/app/english/guide/_components/ReadAndWrite'
 import EnMethods from '@/app/english/guide/_components/EnMethods'
 import { Metadata } from 'next'
+import EnLearningAnchor from '@/app/english/guide/_components/EnLearningAnchor'
 export const metadata: Metadata = {
-    title: 'hhh | English Learning Guide',
+    title: 'English Learning Guide',
 }
 
 export default function Guide() {
     return (
         <div className={styles.wrapper}>
+            <EnLearningAnchor />
             <div className={styles.content}>
-                {/*<ThemeSwitch />*/}
                 <h1>英语学习指南</h1>
                 <section className={styles.section}>
-                    <h2>原则</h2>
+                    <h2 id={'原则'}>原则</h2>
                     <ul className={styles.ul}>
                         <li>
                             学习英语没有捷径，只有一步一个脚印，慢慢从量变达到质变。

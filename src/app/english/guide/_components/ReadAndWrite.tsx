@@ -15,7 +15,7 @@ import { ReactNode } from 'react'
 export default function ReadAndWrite() {
     return (
         <section className={styles.section}>
-            <h2>读写基础</h2>
+            <h2 id={'读写基础'}>读写基础</h2>
             <Timeline
                 className={styles.timelineWrapper}
                 items={[
@@ -23,13 +23,20 @@ export default function ReadAndWrite() {
                         children: (
                             <div className={styles.card}>
                                 <Card title={Grammar.title} bordered={false}>
-                                    {Grammar.descs.map((item) => {
+                                    {Grammar.descs.map((item, index) => {
                                         if (item.type === DescType.List) {
                                             return renderList(
                                                 item.content as ListItemType[],
+                                                'Grammar',
                                             )
                                         } else {
-                                            return item.content as ReactNode
+                                            return (
+                                                <div
+                                                    key={Grammar.title + index}
+                                                >
+                                                    {item.content as ReactNode}
+                                                </div>
+                                            )
                                         }
                                     })}
                                 </Card>
@@ -40,13 +47,18 @@ export default function ReadAndWrite() {
                         children: (
                             <div>
                                 <Card title={Word.title} bordered={false}>
-                                    {Word.descs.map((item) => {
+                                    {Word.descs.map((item, index) => {
                                         if (item.type === DescType.List) {
                                             return renderList(
                                                 item.content as ListItemType[],
+                                                'Word',
                                             )
                                         } else {
-                                            return item.content as ReactNode
+                                            return (
+                                                <div key={Word.title + index}>
+                                                    {item.content as ReactNode}
+                                                </div>
+                                            )
                                         }
                                     })}
                                 </Card>
@@ -55,7 +67,7 @@ export default function ReadAndWrite() {
                     },
                 ]}
             />
-            <h2>阅读</h2>
+            <h2 id={'阅读'}>阅读</h2>
             <Timeline
                 className={styles.timelineWrapper}
                 items={[
@@ -63,13 +75,20 @@ export default function ReadAndWrite() {
                         children: (
                             <div>
                                 <Card title={Reading.title} bordered={false}>
-                                    {Reading.descs.map((item) => {
+                                    {Reading.descs.map((item, index) => {
                                         if (item.type === DescType.List) {
                                             return renderList(
                                                 item.content as ListItemType[],
+                                                'Reading',
                                             )
                                         } else {
-                                            return item.content as ReactNode
+                                            return (
+                                                <div
+                                                    key={Reading.title + index}
+                                                >
+                                                    {item.content as ReactNode}
+                                                </div>
+                                            )
                                         }
                                     })}
                                 </Card>
@@ -79,7 +98,7 @@ export default function ReadAndWrite() {
                 ]}
             />
 
-            <h2>写作</h2>
+            <h2 id={'写作'}>写作</h2>
             <Timeline
                 className={styles.timelineWrapper}
                 items={[
@@ -87,13 +106,20 @@ export default function ReadAndWrite() {
                         children: (
                             <div>
                                 <Card title={Writing.title} bordered={false}>
-                                    {Writing.descs.map((item) => {
+                                    {Writing.descs.map((item, index) => {
                                         if (item.type === DescType.List) {
                                             return renderList(
                                                 item.content as ListItemType[],
+                                                'Writing',
                                             )
                                         } else {
-                                            return item.content as ReactNode
+                                            return (
+                                                <div
+                                                    key={Writing.title + index}
+                                                >
+                                                    {item.content as ReactNode}
+                                                </div>
+                                            )
                                         }
                                     })}
                                 </Card>
