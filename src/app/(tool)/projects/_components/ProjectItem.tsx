@@ -15,7 +15,9 @@ const ItemSection = ({ info }: { info: ProjectInfoType }) => {
                     <li key={item.label}>
                         <Space>
                             {item.type === ItemType.Link ? (
-                                <a href={item.link}>{item.label}</a>
+                                <a target={'_blank'} href={item.link}>
+                                    {item.label}
+                                </a>
                             ) : (
                                 <span>
                                     {item.label} {item.text}
