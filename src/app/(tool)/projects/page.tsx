@@ -63,6 +63,11 @@ const projects: Project[] = [
                         label: '翻译文件',
                         text: 'messages/tg_miniapp_hackathon.json',
                     },
+                    {
+                        type: ItemType.Text,
+                        label: '翻译脚本',
+                        text: 'yarn next tg_miniapp_hackathon hackathon /Users/wick/gate-projects/gate-next-monorepo/apps/competition/public/locales',
+                    },
                 ],
             },
             {
@@ -71,17 +76,17 @@ const projects: Project[] = [
                     {
                         type: ItemType.Link,
                         label: '测试',
-                        link: 'https://124.156.145.198:13471/competition/activities/hackathon',
+                        link: 'https://124.156.145.198:13471/zh/competition/hackathon',
                     },
                     {
                         type: ItemType.Link,
                         label: '预发',
-                        link: 'https://web03.gatedata.org/competition/activities/hackathon',
+                        link: 'https://web03.gatedata.org/competition/hackathon',
                     },
                     {
                         type: ItemType.Link,
                         label: '生产',
-                        link: 'https://www.gate.io/competition/activities/hackathon',
+                        link: 'https://www.gate.io/competition/hackathon',
                     },
                 ],
             },
