@@ -15,11 +15,10 @@ export default function CopyBtn({ text }: { text: string }) {
     return (
         <CopyToClipboard text={text} onCopy={handleCopy}>
             <Button
-                size={'small'}
                 color={'primary'}
                 icon={copied ? <CheckOutlined /> : <CopyOutlined />}
             >
-                {/*{copied ? 'Copied' : 'Copy'}*/}
+                {copied ? 'Copied' : 'Copy'}
             </Button>
         </CopyToClipboard>
     )
